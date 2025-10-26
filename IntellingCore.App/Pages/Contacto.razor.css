@@ -1,0 +1,402 @@
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    border-radius: 25px 50%;
+    background-color: bisque;
+    margin-top: 1rem;
+    box-shadow: 0 3px 25px bisque;
+    margin-bottom: 1rem;
+  }
+  
+  .form-box {
+    display: flex;
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 1200px;
+    width: 100%;
+    box-shadow: 5px 5px 25px;
+  }
+  
+  .image-section img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    max-width: 500px;
+    display: block;
+  }
+  
+  .form-section {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .form-section h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+.inpute,
+textarea.inpute {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #e2e2e2;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+textarea.input {
+  resize: none;
+}
+
+  div.primario{
+    display:flex;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .primario input{
+    margin-right: 0.2rem;
+  }
+  span {
+    color: #d70064;
+    text-decoration: none;
+  }
+
+  .checkbox{
+    width: 6%;
+  }
+
+  
+  
+  button{
+    background: linear-gradient(to right, #e94870, #ff7a21);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }
+
+.map-container {
+    position: relative;
+    width: 100%;
+    min-width: 1000px;
+    margin: 0 auto;
+}
+
+.map-image {
+    width: 50%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.2));
+
+
+}
+
+.marker {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff3c78;
+    border: 3px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+}
+.madrid {
+  top: 37%;
+  left: 46%;
+}
+
+.malaga {
+  top: 68%;
+  left: 44%;
+}
+
+.larioja {
+  top: 20%;
+  left: 50%;
+}
+
+.giblatar {
+  top: 74%;
+  left: 40%;
+}
+
+.tooltip-card {
+    display: none;
+    position: absolute;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    color: black;
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    min-width: 200px;
+    z-index: 10;
+}
+
+.tooltip-content {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Mostrar tooltip al pasar el mouse */
+.marker:hover .tooltip-card {
+    display: block;
+}
+
+/* Tarjeta del video */
+
+/* Contenedor principal para centrar y limitar el ancho */
+.contenedor-tabla {
+  width: 100%;
+  max-width: 500rem; /* ancho máximo del contenido */
+  margin: 40px auto; /* centra el contenido horizontalmente con margen vertical */
+}
+
+/* Estilo general de la tabla */
+.tabla-video-texto {
+  width: 100%; /* la tabla ocupa todo el ancho disponible */
+  border-collapse: collapse; /* elimina espacios entre bordes de celdas */
+}
+
+/* Estilo para la celda que contiene el video */
+.celda-video {
+  width: 50%; /* mitad de la tabla */
+  padding: 10px;
+  vertical-align: top; /* alinea el contenido en la parte superior de la celda */
+  padding-right: 2rem; /* espacio entre video y texto */
+}
+
+/* Estilo para el video dentro de la celda */
+.celda-video video {
+  width: 100%; /* el video ocupa todo el ancho de su celda */
+  height: auto; /* mantiene la proporción original */
+  border-radius: 8px; /* bordes redondeados para estética */
+}
+
+/* Estilo para la celda de texto */
+.celda-texto {
+  width: 50%;
+  vertical-align: top;
+  font-family: Arial, sans-serif; /* fuente legible */
+  font-size: 20px;
+  line-height: 1.2; /* espacio entre líneas cómodo */
+  padding-left: 2rem; /* espacio entre video y texto */
+  padding:2rem;
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+
+  /* Contenedor principal */
+  .container {
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 20px;
+  }
+
+  /* Caja del formulario se adapta al ancho completo */
+  .form-box {
+    flex-direction: column;
+    box-shadow: none;
+  }
+
+  /* Imagen se ajusta arriba y ocupa todo el ancho */
+  .image-section img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Sección del formulario ajustada con menos padding */
+  .form-section {
+    padding: 1rem;
+  }
+
+  /* Inputs y textarea con padding más cómodo */
+  form input[type="text"],
+  form input[type="email"],
+  form textarea {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  .form-section h2 {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .primario {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .checkbox {
+    width: auto;
+  }
+
+  button {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  /* Video + texto */
+  .tabla-video-texto {
+    display: block;
+  }
+
+  .tabla-video-texto td {
+    display: block;
+    width: 100%;
+    padding: 1rem 0;
+  }
+
+  .celda-texto {
+    padding: 1rem;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  /* Mapa */
+  .map-image {
+    width: 100%;
+  }
+
+  .map-container {
+    min-width: auto;
+  }
+
+  .tooltip-card {
+    min-width: 140px;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .madrid {
+    top: 37%;
+    left: 42%;
+  }
+
+  .malaga {
+    top: 68%;
+    left: 36%;
+  }
+
+  .larioja {
+    top: 20%;
+    left: 50%;
+  }
+
+  .giblatar {
+    top: 72%;
+    left: 29%;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px)
+{
+  /* Contenedor del formulario */
+  .form-box {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .image-section {
+    display: none; /* Oculta la imagen lateral en tablet */
+  }
+
+  .form-section {
+    width: 100%;
+  }
+
+  .form-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-section input,
+  .form-section textarea,
+  .form-section button {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  /* Video y texto en una columna */
+  .contenedor-tabla .tabla-video-texto {
+    display: block;
+    width: 100%;
+  }
+
+  .tabla-video-texto td {
+    display: block;
+    width: 100%;
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  .tabla-video-texto video {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Mapa responsivo */
+  .map-container {
+    max-width: 1024px;
+  }
+
+  .map-image {
+    width: 100%;
+  }
+
+  .marker {
+    width: 16px;
+    height: 16px;
+  }
+
+  .tooltip-card {
+    font-size: 12px;
+    min-width: 160px;
+  }
+  .madrid {
+    top: 37%;
+    left: 42%;
+  }
+
+  .malaga {
+    top: 68%;
+    left: 36%;
+  }
+
+  .larioja {
+    top: 20%;
+    left: 50%;
+  }
+
+  .giblatar {
+    top: 72%;
+    left: 29%;
+  }
+}

@@ -1,0 +1,157 @@
+footer {
+    border: 1px solid black;
+  }
+  
+  /* ---------------------- NEWSLETTER ---------------------- */
+  .contains-newletter {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding:  0 10px 10px 10px;
+    gap: 20px;
+  }
+  
+  .contains-newletter > section:first-child {
+    padding-left: 10%;
+    flex: 1 1 300px;
+  }
+  
+  .contains-newletter > section:last-child {
+    flex: 1 1 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  input {
+    border-radius: 55px 102px 25px 55px;
+    width: 100%;
+    max-width: 300px;
+    height: 40px;
+    position: relative;
+  }
+  
+  div.pseudoelemento {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+  }
+  
+  .pseudoelemento::after {
+    content: "";
+    position: absolute;
+    width: 41px;
+    height: 40px;
+    top: 1px;
+    left: 260px;
+    border-radius: 10px 102px 25px 20px;
+    border: 1px solid black;
+    box-shadow: -2px 1px 5px black;
+    background-color: rgba(4, 52, 107, 0.678);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='black'><path d='M20 4H6c-1.103 0-2 .897-2 2v5h2V8l6.4 4.8a1.001 1.001 0 0 0 1.2 0L20 8v9h-8v2h8c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm-7 6.75L6.666 6h12.668L13 10.75z'/><path d='M2 12h7v2H2zm2 3h6v2H4zm3 3h4v2H7z'/></svg>");
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: left;
+  }
+  
+  .barlow-black-3D-blurEffet {
+    font-weight: 900;
+    font-size: 40px;
+    color: var(--text-white);
+    text-shadow: 1px 1px 2px #999, -1px -1px 2px #fff;
+    filter: drop-shadow(1px 1px black) blur(1px);
+    margin: 0;
+  }
+  
+  h2.bebas-neue-regular {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-size: 50px;
+    margin: 20px 0 0;
+    color: var(--text-black);
+    filter: drop-shadow(1px 1px black) blur(1px);
+  }
+  
+  p.informacion {
+    margin-top: -10px;
+    color: var(--text-white);
+    font-size: 16px;
+    filter: drop-shadow(5px 10px 10px black) blur(1px);
+  }
+  
+  /* ---------------------- PRIVACITY ---------------------- */
+  .contains-privacity {
+    color: var(--text-white);
+    width: 100%;
+    background-color: var(--dark-blue);
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    gap: 10px;
+  }
+  
+  .contains-privacity > section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .contains-privacity > section:first-child {
+    width: 100%;
+    justify-content: space-evenly;
+    padding: 20px 0;
+  }
+  
+  .contains-privacity > section:last-child {
+    width: 90%;
+    justify-content: space-between;
+  }
+  
+  hr {
+    width: 96%;
+    border: none;
+    border-top: 1px solid white;
+  }
+  
+  a {
+    text-decoration: none;
+    color: var(--text-white);
+  }
+  
+  .sansation-light {
+    font-family: "Sansation", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+  
+  span{
+    color: white;
+  }
+  /* ---------------------- RESPONSIVE ---------------------- */
+  @media (max-width: 768px) {
+    .contains-newletter{
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+     .contains-newletter > section:first-child {
+    padding-left: 10%;
+    width: 50%;
+  }
+
+   .contains-newletter > section:last-child {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+    .barlow-black-3D-blurEffet, h2.bebas-neue-regular {
+      font-size: 1.3rem;
+    }
+    p.informacion {
+    margin-top: 5px;
+    font-size: 0.6rem;
+    filter: drop-shadow(5px 10px 10px black) blur(1px);
+  }
+  }

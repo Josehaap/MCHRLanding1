@@ -1,0 +1,42 @@
+.animated-text{
+    animation-duration: var(--duration);
+    animation-delay: var(--delay);
+    animation-fill-mode: var(--fillmode);
+    animation-timing-function: var(--timingfunction);
+}
+
+.Text-Blur {
+    /* Aplica la animación de desenfoque al elemento */
+    animation-name: EffectBlur;
+}
+
+.Text-SlideInLeft {
+    /* Hace que el elemento se deslice desde la izquierda y se vuelva visible */
+    animation-name: EffectSlideInLeft;
+}
+
+.Text-BlurSlide {
+    /* Aplica un desenfoque y un deslizamiento hacia arriba mientras el elemento se vuelve visible */
+    animation-name: EffectBlurSlide;
+}
+
+.Text-FadeIn {
+    /* Aplica una animación de aparición gradual del elemento */
+    animation-name: EffectFadeIn; 
+}
+
+.Text-ZoomIn {
+    /* Aplica una animación de zoom hacia adentro, haciendo que el elemento crezca y se vuelva visible */
+    animation-name: EffectZoomIn;
+}
+
+.Text-ZoomOut {
+    /* Aplica una animación de zoom hacia afuera, haciendo que el elemento se aleje y se vuelva visible */
+    animation-name: EffectZoomOut;
+}
+
+
+.Text-ZoomLeft{
+    animation-name: EffectZoomLeft;
+} 
+

@@ -1,0 +1,492 @@
+﻿@page "/"
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+<PageTitle>Home</PageTitle>
+ <div class="hero">
+    <h1 style="width: @(idiomaDetectado == "es"? "29ch" : idiomaDetectado == "en"? "33ch": idiomaDetectado == "zh"? "20ch":"40ch");">@contenido[idiomaDetectado][0]</h1>
+        <div class="hero-content">
+            
+            <p>@contenido[idiomaDetectado][1]</p> 
+            <div class="button" @onclick='()=> NavigationManager.NavigateTo("/contacto")'>
+                <Button ColoresFin="[]" ColoresInicio="[]" Textbutton='@($"{contenido[idiomaDetectado][2]}")' />
+            </div>
+        </div>
+
+    
+</div>
+<section class="info">
+        <h2>@($"{contenido[idiomaDetectado][3]}")</h2>
+       <div>
+            <h2>@($"{contenido[idiomaDetectado][4]}") </h2>
+            <ul>
+                @for (int i = 0; i < 2; i++)
+                {
+                    <li> @($"{contenido[idiomaDetectado][5 + i]}") </li>
+                }
+            </ul>
+           
+       </div>
+       <div>
+            <h2>@($"{contenido[idiomaDetectado][7]}")</h2>
+            <ul>
+                @for (int i = 0; i < 3; i++)
+                {
+                    <li> @($"{contenido[idiomaDetectado][8 + i]}") </li>
+                }
+                
+            </ul>
+
+       </div>
+</section>
+
+<section class="info2">
+    @for (int i = 0; i < 5; i++)
+    {   
+        <article class=" info2-article@(i) " style="animation-delay: @(i + 1)s;" >
+            <div class="@(GetClassName(i))"></div>
+            <h4>@(contenido[idiomaDetectado][11 + i])</h4>
+        </article>
+    }
+</section>
+<!-- 
+
+<article class="tarjetas" >
+    
+    @for (int i = 0; i < @InformacionTarjetas.Count(); i++)
+    {
+        string nombre = InformacionTarjetas[i][0];
+        <div class="@(tarjetaActiva != null && tarjetaActiva != nombre? "EffecToBlurAndUp" : "reversEffect")" @onmouseover="() => tarjetaActiva = nombre" @onmouseout="() => tarjetaActiva = null">
+            <HoverImageCard DefaultNameImg="@InformacionTarjetas[i][1]" HoverNameImg="@InformacionTarjetas[i][2]"Title='@($"{contenido[idiomaDetectado][i + 16]}")' />
+        </div>
+    }
+</article>
+#region --> 
+
+<article class="llamadaDeAtencion">
+    <ImagenSlash NombreImg="EmpresaImg.jpg"  Titulo='@($"{contenido[idiomaDetectado][18]}")' Subtitulo='@($"{contenido[idiomaDetectado][19]}")' TextColor="white" HayButton="false" />   
+</article>
+
+<section class="about">
+        <h2>@($"{contenido[idiomaDetectado][20]}")</h2>
+        <p>@($"{contenido[idiomaDetectado][21]}")</p>
+        <div class="cards">
+        @for (int i = 0; i < 3; i++)
+        {
+            <div class="card">
+                <h3>@($"{contenido[idiomaDetectado][22 + i * 2]}")</h3>
+                <p>@($"{contenido[idiomaDetectado][23 + i * 2]}")</p>
+            </div>
+        }
+        </div>
+</section>
+<section class="precios">
+    @* Índices base para cada plan en el array de contenido *@
+    @{
+        // Índices de inicio para cada plan en el contenido
+        int[] indicesPlanes = new int[] { 28, 37, 49 };
+        // Cantidad de características por plan
+        int[] caracteristicasPorPlan = new int[] { 5, 8, 7 };
+    }
+    @for (int i = 0; i < 3; i++)
+    {
+        var idx = indicesPlanes[i];
+        <div class="card-precio card-precios-@(i)" >
+            <h3>@contenido[idiomaDetectado][idx]</h3>
+            <p class="subtitulo1">@contenido[idiomaDetectado][idx + 1]</p>
+            <h2>@contenido[idiomaDetectado][idx + 2]</h2>
+            <p class="subtitulo2">@contenido[idiomaDetectado][idx + 3]</p>
+            <ul>
+                @for (int j = 0; j < caracteristicasPorPlan[i]; j++)
+                {
+                    <li>@contenido[idiomaDetectado][idx + 4 + j]</li>
+                }
+            </ul>
+            @if (i == 1)
+            {
+                <div class="popular">Popular</div>
+            }
+            <button class="button" @onclick='()=> NavigationManager.NavigateTo("/contacto")'>Contacto</button>
+
+        </div>
+        
+    }
+</section>
+
+<section class="testimonials">
+    <div class="container">
+        <div class="chat"></div>
+        <h2>@($"{contenido[idiomaDetectado][61]}")</h2>
+    </div>
+    
+    <article class="testimonials-contains">
+        <div class="left-arrow arrow" @onclick="NavegarAtras"  ></div>
+        <div class="testimonial">
+            <p class="" >@($"{reseñas[contador][0]}")</p>
+            <span> - @($"{reseñas[contador][1]}")</span>
+        </div>
+        <div class="right-arrow arrow" @onclick=" NavegarAdelante"></div>
+
+    </article>
+    
+</section>
+
+   
+
+@code {
+    private string idiomaDetectado = "es"; // Idioma predeterminado
+    private bool activarEffecto = false;
+    private string? tarjetaActiva = null;
+    private int limitadorDeBucle = 0; //Me permite indicar cuantas veces en que caso quiero que se repita l bucle 
+
+    #region Informacion Tarjetas
+    Dictionary<int, List<string>> InformacionTarjetas = new Dictionary<int, List<string>>
+    {
+        { 0, new List<string> { "tarjeta1", "Mundo1_JJJ.jpg", "Mundo2_JJ.jpg"} },
+        { 1, new List<string> { "tarjeta2","entrevista.jpg" , "contrato_2.jpg" } },
+        { 2, new List<string> { "tarjeta3" , "redMundial_jj.jpg", "redesNeuronales_JJ.jpg"} }
+    };
+    #endregion  
+
+    #region Informacion Reseñas
+    public int contador = 0;
+
+
+    private Dictionary<int, List<string>> reseñas = new Dictionary<int, List<string>>
+    {
+        {0, new List<string> { "Marta V., Responsable RRHH, cadena de retail ", "\"Pasamos de no saber quién fichaba a tener un control total desde el móvil.\"" } },
+        {1, new List<string> { " Carlos S., CEO, empresa tecnológica", "\"Digitalizamos todo: contratos, vacaciones, evaluaciones. Ganamos tiempo y evitamos errores.\" " } },
+        {2, new List<string> {"Alejandra M., Directora de Personas, empresa industrial","\"Nos aseguramos de cumplir la ley con el fichaje y además mejoramos la comunicación interna. Un cambio total.\" "   } },
+    };
+
+
+    public void NavegarAdelante()
+    {
+        if (contador < reseñas.Count - 1)
+        {
+            contador++;
+        }
+        else
+        {
+            contador = 0;
+        }
+    }
+
+    public void NavegarAtras()
+    {
+        if (contador > 0)
+        {
+            contador--;
+        }
+        else
+        {
+            contador = reseñas.Count - 1;
+        }
+    }
+    #endregion
+
+    #region Contenido Estático
+    private Dictionary<string, List<string>> contenido = new Dictionary<string, List<string>>
+{
+    { "es", new List<string>
+        {
+            "Gestiona tu talento sin caos.",
+            "¿Tu empresa aún gestiona RRHH con hojas de Excel, carpetas compartidas o apps desconectadas?",
+            "Escala tu negocio.",
+            "¿Pierdes tiempo con procesos manuales, dudas legales, desorganización y empleados desinformados?",
+            "Tenemos la solución.",
+            "Nuestra plataforma SaaS de Recursos Humanos está diseñada para empresas que buscan orden, cumplimiento, transparencia y escalabilidad.",
+            "Nuestra app se adapta a estructuras complejas, con roles personalizados y datos segregados.",
+            "Ideal para:",
+            "Empresas en crecimiento o con múltiples centros",
+            "Equipos de RRHH sobrecargados o poco digitalizados ",
+            "Negocios que deben cumplir normativas laborales y controlar ausencias",
+            "Fichaje legal 100% conforme a la normativa vigente",
+            "Documentación centralizada y segura ",
+            "Comunicación interna efectiva ",
+            "Vacaciones, permisos y nóminas en un solo lugar ",
+            "Desempeño y formación continua con seguimiento real",
+            "Talento global, crecimiento global",
+            "Conexión total",
+            /*Info ImagenSlash*/
+            "70% de consultorías 100% de ÉXITO",
+            "Expertos en desarrollos IT",
+            /*Info ImagenSlash*/
+            "¿Por qué elegirnos?",
+            "Somos líderes en consultoría de negocios con más de 10 años de experiencia ayudando a empresas a mejorar sus procesos y resultados.",
+            "Expertos en el sector",
+            "Contamos con un equipo especializado en diversas industrias, brindando soluciones personalizadas.",
+            "Soluciones eficientes",
+            "Nos enfocamos en entregar soluciones prácticas y de impacto inmediato para tu empresa.",
+            "Soporte continuo",
+            "Te acompañamos en cada paso del camino, asegurando el éxito a largo plazo.",
+            /*Precios info*/
+            "Básico",
+            "Ideal para: PYMEs",
+            "€59/mes",
+            "Hasta 10 usuarios, fichaje legal, vacaciones y documentos básicos",
+            "Fichaje legal",
+            "Gestion de vacaciones",
+            "Documentación básica",
+            "Hasta 10 usuarios",
+            "Soporte por email",
+            "Profesional",
+            "Ideal para: Empresas en crecimiento",
+            "€149/mes",
+            "Hasta 50 usuarios, desempeño, nóminas, formación, flujos de aprobación",
+            "Todo lo del plan Básico",
+            "Hasta 50 usuarios",
+            "Evaluación de desempeño",
+            "Gestión de nóminas",
+            "Formación y seguimiento",
+            "Flujos de aprobación",
+            "API REST",
+            "Soporte prioritario",
+            "Empresarial",
+            "Ideal para: Multisucursal o complejas",
+            "€299/mes",
+            "Usuarios ilimitados, multiempresa, firma electrónica, API, integraciones",
+            "Todo lo del plan Profesional",
+            "Usuarios ilimitados",
+            "Soporte multiempresa",
+            "Firma electrónica",
+            "API avanzada",
+            "Integraciones personalizadas",
+            "Soporte dedicado",
+            "Configuración a medida",
+
+            "Lo que dicen nuestros clientes"
+        }
+    },
+    { "en", new List<string>
+        {
+            "Manage your talent without chaos.",
+            "Does your company still manage HR with Excel sheets, shared folders, or disconnected apps?",
+            "Scale your business.",
+            "Are you wasting time with manual processes, legal doubts, disorganization, and uninformed employees?",
+            "We have the solution.",
+            "Our HR SaaS platform is designed for companies seeking order, compliance, transparency, and scalability.",
+            "Our app adapts to complex structures, with custom roles and segregated data.",
+            "Ideal for:",
+            "Growing companies or those with multiple locations",
+            "Overloaded or non-digitalized HR teams",
+            "Businesses that must comply with labor regulations and control absences",
+            "100% legal clock-in compliant with current regulations",
+            "Centralized and secure documentation",
+            "Effective internal communication",
+            "Vacations, leaves, and payroll in one place",
+            "Continuous performance and training with real tracking",
+            "Global talent, global growth",
+            "Total connection",
+            /*Info ImagenSlash*/
+            "70% of consultancies 100% SUCCESS",
+            "Experts in IT development",
+            /*Info ImagenSlash*/
+            "Why choose us?",
+            "We are leaders in business consulting with over 10 years of experience helping companies improve their processes and results.",
+            "Industry experts",
+            "We have a specialized team in various industries, providing personalized solutions.",
+            "Efficient solutions",
+            "We focus on delivering practical and immediate impact solutions for your company.",
+            "Continuous support",
+            "We accompany you every step of the way, ensuring long-term success.",
+            /*Pricing info*/
+            "Basic",
+            "Ideal for: SMEs",
+            "€59/month",
+            "Up to 10 users, legal clock-in, vacations, and basic documents",
+            "Legal clock-in",
+            "Vacation management",
+            "Basic documentation",
+            "Up to 10 users",
+            "Email support",
+            "Professional",
+            "Ideal for: Growing companies",
+            "€149/month",
+            "Up to 50 users, performance, payroll, training, approval workflows",
+            "Everything in the Basic plan",
+            "Up to 50 users",
+            "Performance evaluation",
+            "Payroll management",
+            "Training and tracking",
+            "Approval workflows",
+            "REST API",
+            "Priority support",
+            "Enterprise",
+            "Ideal for: Multi-branch or complex companies",
+            "€299/month",
+            "Unlimited users, multi-company, e-signature, API, integrations",
+            "Everything in the Professional plan",
+            "Unlimited users",
+            "Multi-company support",
+            "E-signature",
+            "Advanced API",
+            "Custom integrations",
+            "Dedicated support",
+            "Custom setup",
+
+            "What our clients say"
+        }
+    },
+    { "zh", new List<string>
+        {
+            "无混乱地管理员工人才。",
+            "您的公司还在用Excel表、共享文件夹或分散的应用管理人力资源吗？",
+            "扩展您的业务。",
+            "您是否因手动流程、法律疑虑、混乱和员工信息不畅而浪费时间？",
+            "我们有解决方案。",
+            "我们的人力资源SaaS平台专为寻求秩序、合规、透明和可扩展性的企业设计。",
+            "我们的应用适应复杂结构，支持自定义角色和数据隔离。",
+            "适合：",
+            "成长型或多分支企业",
+            "人力资源团队负担过重或数字化程度低",
+            "需要遵守劳动法规并控制缺勤的企业",
+            "100%符合法规的合法打卡",
+            "集中且安全的文档管理",
+            "高效的内部沟通",
+            "假期、请假和工资单一站式管理",
+            "持续绩效与培训，实时跟踪",
+            "全球人才，全球增长",
+            "全面连接",
+            /*Info ImagenSlash*/
+            "70%的咨询100%成功",
+            "IT开发专家",
+            /*Info ImagenSlash*/
+            "为什么选择我们？",
+            "我们是商业咨询领域的领导者，拥有10年以上帮助企业改善流程和业绩的经验。",
+            "行业专家",
+            "我们拥有专注于各行业的专业团队，提供个性化解决方案。",
+            "高效的解决方案",
+            "我们专注于为您的企业提供实用且立竿见影的解决方案。",
+            "持续支持",
+            "我们全程陪伴，确保长期成功。",
+            /*价格信息*/
+            "基础版",
+            "适合：中小企业",
+            "€59/月",
+            "最多10用户，合法打卡，假期和基础文档",
+            "合法打卡",
+            "假期管理",
+            "基础文档",
+            "最多10用户",
+            "邮件支持",
+            "专业版",
+            "适合：成长型企业",
+            "€149/月",
+            "最多50用户，绩效，工资单，培训，审批流程",
+            "包含基础版所有功能",
+            "最多50用户",
+            "绩效评估",
+            "工资管理",
+            "培训与跟踪",
+            "审批流程",
+            "REST API",
+            "优先支持",
+            "企业版",
+            "适合：多分支或复杂企业",
+            "€299/月",
+            "无限用户，多公司，电子签名，API，集成",
+            "包含专业版所有功能",
+            "无限用户",
+            "多公司支持",
+            "电子签名",
+            "高级API",
+            "定制集成",
+            "专属支持",
+            "定制配置",
+
+            "客户的评价"
+        }
+    },
+    { "hi", new List<string>
+        {
+            "अव्यवस्था के बिना अपने टैलेंट का प्रबंधन करें।",
+            "क्या आपकी कंपनी अभी भी HR को एक्सेल शीट्स, साझा फोल्डर या असंबद्ध ऐप्स से प्रबंधित करती है?",
+            "अपने व्यवसाय को स्केल करें।",
+            "क्या आप मैन्युअल प्रक्रियाओं, कानूनी संदेह, अव्यवस्था और अनजान कर्मचारियों के साथ समय बर्बाद कर रहे हैं?",
+            "हमारे पास समाधान है।",
+            "हमारा HR SaaS प्लेटफ़ॉर्म उन कंपनियों के लिए डिज़ाइन किया गया है जो व्यवस्था, अनुपालन, पारदर्शिता और स्केलेबिलिटी चाहती हैं।",
+            "हमारा ऐप जटिल संरचनाओं के लिए अनुकूल है, जिसमें कस्टम रोल्स और अलग-अलग डेटा हैं।",
+            "आदर्श है:",
+            "विकासशील या बहु-शाखा कंपनियाँ",
+            "अत्यधिक व्यस्त या कम डिजिटल HR टीमें",
+            "वे व्यवसाय जिन्हें श्रम नियमों का पालन करना है और अनुपस्थिति को नियंत्रित करना है",
+            "100% कानूनी उपस्थिति, वर्तमान नियमों के अनुसार",
+            "केंद्रित और सुरक्षित दस्तावेज़ीकरण",
+            "प्रभावी आंतरिक संचार",
+            "एक ही स्थान पर छुट्टियाँ, अनुमति और वेतन पर्ची",
+            "निरंतर प्रदर्शन और प्रशिक्षण, वास्तविक ट्रैकिंग के साथ",
+            "वैश्विक प्रतिभा, वैश्विक विकास",
+            "कुल कनेक्शन",
+            /*Info ImagenSlash*/
+            "70% परामर्श 100% सफलता",
+            "आईटी विकास में विशेषज्ञ",
+            /*Info ImagenSlash*/
+            "हमें क्यों चुनें?",
+            "हम व्यवसाय परामर्श में अग्रणी हैं, 10+ वर्षों के अनुभव के साथ कंपनियों को उनके प्रक्रियाओं और परिणामों में सुधार करने में मदद करते हैं।",
+            "उद्योग विशेषज्ञ",
+            "हमारे पास विभिन्न उद्योगों में विशेषज्ञता प्राप्त टीम है, जो व्यक्तिगत समाधान प्रदान करती है।",
+            "कुशल समाधान",
+            "हम आपकी कंपनी के लिए व्यावहारिक और त्वरित प्रभाव वाले समाधान प्रदान करने पर ध्यान केंद्रित करते हैं।",
+            "निरंतर समर्थन",
+            "हम हर कदम पर आपके साथ हैं, दीर्घकालिक सफलता सुनिश्चित करते हैं।",
+            /*मूल्य जानकारी*/
+            "बेसिक",
+            "आदर्श: SMEs के लिए",
+            "€59/माह",
+            "10 उपयोगकर्ताओं तक, कानूनी उपस्थिति, छुट्टियाँ और बुनियादी दस्तावेज़",
+            "कानूनी उपस्थिति",
+            "छुट्टी प्रबंधन",
+            "बुनियादी दस्तावेज़ीकरण",
+            "10 उपयोगकर्ताओं तक",
+            "ईमेल समर्थन",
+            "प्रोफेशनल",
+            "आदर्श: विकासशील कंपनियों के लिए",
+            "€149/माह",
+            "50 उपयोगकर्ताओं तक, प्रदर्शन, वेतन, प्रशिक्षण, अनुमोदन वर्कफ़्लो",
+            "बेसिक प्लान की सभी सुविधाएँ",
+            "50 उपयोगकर्ताओं तक",
+            "प्रदर्शन मूल्यांकन",
+            "वेतन प्रबंधन",
+            "प्रशिक्षण और ट्रैकिंग",
+            "अनुमोदन वर्कफ़्लो",
+            "REST API",
+            "प्राथमिकता समर्थन",
+            "एंटरप्राइज",
+            "आदर्श: मल्टी-ब्रांच या जटिल कंपनियों के लिए",
+            "€299/माह",
+            "असीमित उपयोगकर्ता, मल्टी-कंपनी, ई-हस्ताक्षर, API, एकीकरण",
+            "प्रोफेशनल प्लान की सभी सुविधाएँ",
+            "असीमित उपयोगकर्ता",
+            "मल्टी-कंपनी समर्थन",
+            "ई-हस्ताक्षर",
+            "एडवांस्ड API",
+            "कस्टम एकीकरण",
+            "समर्पित समर्थन",
+            "कस्टम सेटअप",
+
+            "हमारे ग्राहकों की राय"
+        }
+    }
+};
+    #endregion
+
+     protected override async Task OnInitializedAsync()
+    {
+        // Detectar el idioma del navegador
+        idiomaDetectado = await JSRuntime.InvokeAsync<string>("getBrowserLanguage");
+        idiomaDetectado = idiomaDetectado.Substring(0, 2); // Obtener solo el código del idioma (es, en, etc.)
+
+        // Si el idioma no está en el diccionario, usar español como predeterminado
+        if (!contenido.ContainsKey(idiomaDetectado))
+        {
+            idiomaDetectado = "es";
+        }
+    }
+    
+
+    private string GetClassName(int number)
+    {
+        return number == 0 ? "fichaje" : number == 1 ? "document" : number == 2 ? "auriculares" : number == 3 ? "vacaciones": "seguimiento" ;       
+    }
+
+  }    

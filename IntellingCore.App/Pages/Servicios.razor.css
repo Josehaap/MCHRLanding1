@@ -1,0 +1,431 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 0;
+}
+
+/* Evitamos conflictos con nombres genéricos */
+.que-hacemos {
+    width: 100%;
+    text-align: center;
+    padding: 5rem 1rem 2rem;
+    background: url('./img/PortadaMind.jpg') no-repeat center center;
+    background-size: cover;
+    color: rgb(255, 255, 255);
+}
+.titulo-hacemos h2 {
+    font-size: 1.8rem;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+.titulo-hacemos h3 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #fbeed2;
+}
+
+.titulo-hacemos .linea {
+    width: 50px;
+    height: 4px;
+    background-color: #ff5b3c;
+    margin: 1rem auto;
+    border-radius: 2px;
+}
+
+/* Contenedor general */
+.contenedor-cubos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+/* Tarjetas individuales */
+.tarjeta-cubo {
+    position: relative;
+    width: 200px;
+    aspect-ratio: 1;
+    perspective: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+/* Cubo fondo */
+.tarjeta-cubo .cubo {
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: #0b025f;
+    border-radius: 2rem;
+    box-shadow: inset 10px 10px 10px #6e6e6e, inset -10px -10px 10px #575656;
+    transition: transform 1s, box-shadow 1s;
+}
+
+/* Imagen */
+.tarjeta-cubo img {
+    position: absolute;
+    width: 50%;
+    transition: transform 1s;
+}
+
+/* Hover animaciones */
+.tarjeta-cubo:hover .cubo {
+    transform: translateZ(100px) rotateX(75deg);
+    box-shadow: 10px 10px 10px #6b6b6b, -10px -10px 10px #585858;
+}
+
+.tarjeta-cubo:hover img {
+    transform: translateY(-50px) translateZ(250px);
+}
+
+/* Responsive en pantallas pequeñas */
+@media (max-width: 600px) {
+    .contenedor-cubos {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+/* Contenedor de Servicios */
+.servicios-section {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #F2F2F2;
+    padding: 2rem 1rem 1.5rem;
+}
+
+/* Títulos */
+.titulo {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-top: 15px;
+}
+
+.titulo::after {
+    content: '';
+    width: 60px;
+    height: 4px;
+    background-color: #e94e1b;
+    display: block;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+}
+
+.subtitulo {
+    text-align: center;
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 3rem;
+}
+
+/* Tarjetas Servicios */
+.tarjeta {
+    width: 80%;
+    display: flex;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+}
+
+.imagen {
+    flex: 0 0 200px;
+    background-color: #ddd;
+}
+
+.imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contenido {
+    padding: 2rem;
+    flex: 1;
+}
+
+.contenido h2 {
+    font-size: 1.5rem;
+    color: #e94e1b;
+    margin-bottom: 1rem;
+}
+
+.contenido p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.contenido ul {
+    list-style: disc inside;
+}
+
+.contenido ul li {
+    margin-bottom: 0.5rem;
+}
+
+/* Sección Colaboración */
+.colaboracion-section {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #FFFFFF;
+    padding: 2rem 1rem 1.5rem;
+}
+
+.colaboracion-grid {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.colaboracion-card {
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.colaboracion-texto {
+    padding: 2rem;
+    flex: 1;
+}
+
+.colaboracion-texto h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.colaboracion-texto p {
+    line-height: 1.6;
+    color: #666;
+}
+
+.colaboracion-imagen {
+    width: 100%;
+    height: 200px;
+}
+
+.colaboracion-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Sección ¿Por qué MindShore? */
+.porque-mindshore {
+    width: 100%;
+    margin: 0;
+    padding: 2rem 1rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: #f5f5f5;
+}
+
+
+.porque-cards {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.porque-card {
+    background: white;
+    padding: 1.5rem;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    position: relative;
+    border-radius: 10px;
+}
+
+.porque-card.border-highlight {
+    border-top: 3px solid #f25c05;
+}
+
+.porque-number {
+    font-size: 2rem;
+    color: #f25c05;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.porque-card h2 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.porque-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #444;
+}
+
+.porque-card.highlight {
+    background: linear-gradient(to bottom right, #D0E3CC, #DBA159);
+    color: rgb(63, 62, 62);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.porque-card.highlight h2 {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.porque-card.highlight button {
+    background: white;
+    color: #f25c05;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    align-self: flex-start;
+}
+
+/* =================== Responsive Mejorado =================== */
+
+/* Ajustes para pantallas ≤ 768px (tablets y móviles grandes) */
+@media (max-width: 768px) {
+    .que-hacemos,
+    .servicios-section,
+    .colaboracion-section,
+    .porque-mindshore {
+        padding: 2rem 1rem;
+    }
+
+    .titulo-hacemos{
+        padding-top: 2.25rem;
+    }
+
+    .titulo {
+        font-size: 1.5rem;
+    }
+
+    .subtitulo {
+        font-size: 0.9rem;
+    }
+
+    .porque-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .tarjeta {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .imagen {
+        height: 200px;
+        flex: none;
+    }
+
+    .colaboracion-grid {
+        width: 100%;
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+}
+
+/* Ajustes para pantallas ≤ 600px (móviles medianos) */
+@media (max-width: 600px) {
+    .contenedor-cubos {
+        display: none;
+    }
+
+    .que-hacemos {
+        padding: 3rem 1rem 1rem;
+        background-position: center top;
+    }
+
+    .titulo-hacemos h2 {
+        font-size: 1.5rem;
+    }
+
+    .titulo-hacemos h3 {
+        font-size: 1.1rem;
+    }
+}
+
+/* Ajustes para pantallas ≤ 480px (móviles pequeños) */
+@media (max-width: 480px) {
+    .titulo {
+        font-size: 1.3rem;
+    }
+
+    .subtitulo {
+        font-size: 0.8rem;
+    }
+
+    .contenido {
+        padding: 1rem;
+    }
+
+    .porque-card {
+        padding: 1rem;
+    }
+
+    .porque-number {
+        font-size: 1.5rem;
+    }
+
+    .tarjeta-cubo {
+        width: 150px;
+    }
+
+    .tarjeta-cubo img {
+        width: 60%;
+    }
+
+    .porque-card.highlight button {
+        font-size: 0.85rem;
+        padding: 8px 16px;
+    }
+}
+
+/* Ajustes extra para pantallas ≤ 400px (móviles muy pequeños) */
+@media (max-width: 400px) {
+    .tarjeta-cubo {
+        width: 140px;
+    }
+}

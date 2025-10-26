@@ -1,0 +1,125 @@
+header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    margin-top: 20px;
+    position: fixed;
+}
+
+nav{
+    border: 1px solid black;
+    width: 75%;
+    border-radius: 25px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 25px;
+    box-shadow: 1px 3px 4px black  ;
+    background-color: white;
+    
+}
+div{
+    width: 200px;
+    height: 50px; 
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+div::before{
+    position: absolute;
+    z-index: -4;
+    content: "";
+    top: 0;
+    left: 50%;
+    width: 0%;
+    height: 100%;
+    border-radius: 50%;
+    transition: all .5s ease;
+}
+div:hover::before {
+    left: 0;
+    width: 100%;
+    border-radius: 25px;
+    background-color: rgba(240, 174, 103, 0.942);
+} 
+
+div:active::before{
+
+    transform: scale(0.80);  
+}
+span{
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold; 
+    font-size: 15px;
+}
+
+
+header, div{
+    z-index: 10;
+}
+
+@media (max-width: 768px) {
+    header{
+        width: 100%;
+        margin-top: 20px;
+    }
+    nav{
+        width: 92%;
+        height: 50px;
+        display: flex;
+        justify-content: space-around;
+        box-sizing: content-box;
+    }
+    div{
+        height: 50px;
+        width: 4.2rem;
+        margin: 0 2px;
+    }
+    div:active::before {
+        left: 0;
+        width: 100%;
+        border-radius: 25px;
+        background-color: rgba(240, 174, 103, 0.942);
+    } 
+    span{
+        font-size: 12px;
+    }
+    
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* iPads y tablets Android, en vertical u horizontal */
+   header{
+        width: 100%;
+        margin-top: 20px;
+    }
+    nav{
+        width: 91%;
+        height: 50px;
+        display: flex;
+        justify-content: space-around;
+        box-sizing: content-box;
+
+    }
+    div{
+        width: 9.1rem;
+        height: 50px;
+    }
+    div:active::before {
+        left: 0;
+        width: 100%;
+        border-radius: 25px;
+        background-color: rgba(240, 174, 103, 0.942);
+    } 
+    span{
+        font-size: 12px;
+    }
+
+    
+}

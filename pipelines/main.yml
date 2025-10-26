@@ -1,0 +1,50 @@
+name: Build and Deploy MindCoreHR Landing Page
+
+trigger:
+  - main
+
+variables:
+  - name: imageName
+    value: 'mcbu-landing'
+  - name: awsCredentials
+    value: 'aws-service-connection'  
+  - name: awsRegion
+    value: 'us-east-1'
+  - name: awsAccountId
+    value: '869935091801'
+  - name: ecrRepository
+    value: 'mindcore/hr-landing'
+  - name: branchName
+    value: '$(Build.SourceBranchName)'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:  
+
+- task: Docker@2
+  displayName: 'Build Docker image'
+  inputs:
+    command: build
+    dockerfile: './dockerfile'
+    repository: $(imageName)
+    tags: |
+      $(branchName)
+    buildContext: .
+    arguments: '--build-arg ENVIRONMENT=$(ENVIRONMENT)'
+
+- script: |
+    docker tag $(imageName):$(branchName) $(awsAccountId).dkr.ecr.$(awsRegion).amazonaws.com/$(ecrRepository):$(branchName)
+  displayName: 'Tag Docker image'
+
+- task: ECRPushImage@1
+  displayName: 'Push image to ECR'
+  inputs:
+    awsCredentials: '$(awsCredentials)'
+    regionName: 'us-east-1'
+    imageSource: 'imagename'
+    sourceImageName: '$(imageName)'
+    sourceImageTag: '$(branchName)'
+    repositoryName: '$(ecrRepository)'
+    pushTag: '$(branchName)'
+

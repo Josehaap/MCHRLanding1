@@ -1,0 +1,30 @@
+﻿@inherits LayoutComponentBase
+@using MCHRLanding.Components
+
+<div class="page">
+    <Navbar />
+    <main>
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+<style>
+    .page {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    main {
+        flex: 1;
+    }
+
+    .content {
+        padding: 1.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+</style>

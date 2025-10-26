@@ -1,0 +1,206 @@
+@page "/contacto"
+@inject IJSRuntime JSRuntime
+@inject HttpClient Http
+@using Microsoft.AspNetCore.Components.Forms
+
+
+<div>
+    <ImagenSlash HayButton="false" NombreImg="ContactoPrincipal.jpg" 
+        Subtitulo='@($"{contenidoContacto[idiomaDetectado][0]}" )'
+        Titulo='@($"{contenidoContacto[idiomaDetectado][1]}" )' />
+</div>
+
+<div class="container">
+    <div class="form-box">
+        <div class="image-section">
+            <img src="/img/ContactoFormulario.jpg" alt="Imagen lateral">
+        </div>
+        <div class="form-section">
+            <h2>@($"{contenidoContacto[idiomaDetectado][2]}" )</h2>
+            <EditForm Model="@contactoModel" OnValidSubmit="EnviarInfo">
+                <InputText style=" width: 100%;padding:1rem;margin-bottom: 1rem;background-color: #e2e2e2;border: none;border-radius: 4px;font-size: 1rem;" @bind-Value="contactoModel.Nombre" placeholder="Nombre" />
+                <InputText  style=" width: 100%;padding:1rem;margin-bottom: 1rem;background-color: #e2e2e2;border: none;border-radius: 4px;font-size: 1rem;" @bind-Value="contactoModel.Email" type="email" placeholder="Email"  />
+                <InputText  style=" width: 100%;padding:1rem;margin-bottom: 1rem;background-color: #e2e2e2;border: none;border-radius: 4px;font-size: 1rem;" @bind-Value="contactoModel.Asunto" placeholder="Asunto"  />
+                <InputTextArea  style=" resize: none; width: 100%;padding:1rem;margin-bottom: 1rem;background-color: #e2e2e2;border: none;border-radius: 4px;font-size: 1rem;"  @bind-Value="contactoModel.Mensaje" placeholder="Mensaje"  />
+                <div class="primario">
+                    <InputCheckbox style=" margin-right: 0.5rem;" @bind-Value="contactoModel.AceptaPolitica" /> <p style="margin:0; padding:0;">Acepto la política de <span> privacidad</span></p>
+                </div>
+                <button type="submit">Enviar</button>
+            </EditForm>
+            <p>@Mensaje</p>
+        </div> 
+    </div>
+</div>
+<!-- Video y texto de la demo de Recursos Humanos -->
+<div class="contenedor-tabla">
+  <table class="tabla-video-texto">
+    <tr>
+
+      
+
+      <!-- Columna derecha: Texto -->
+      <td class="celda-texto">
+        <h2 style="text-align: center; padding-bottom: 1rem;">@($"{contenidoContacto[idiomaDetectado][11]}" )</h2>
+        <p style="text-align: center;">
+           @($"{contenidoContacto[idiomaDetectado][12]}" )         
+        </p>
+      </td>
+    </tr>
+  </table>
+</div>
+
+ <!-- Mapa -->
+<div class="map-container">
+    <img src="/img/mapa-removebg-preview.png" alt="Mapa" class="map-image">
+
+    <div class="marker madrid">
+        <div class="tooltip-card">
+            <div class="tooltip-content">
+                <strong>Madrid</strong><br>
+                C. de los Estudios
+            </div>
+        </div>
+    </div>
+
+    <div class="marker malaga">
+        <div class="tooltip-card">
+            <div class="tooltip-content">
+                <strong>Málaga</strong><br>
+                Carretera Cádiz n°89
+            </div>
+        </div>
+    </div>
+
+    <div class="marker larioja">
+        <div class="tooltip-card">
+            <div class="tooltip-content">
+                <strong>La Rioja</strong><br>
+                Av. de la Tecnología 12
+            </div>
+        </div>
+    </div>
+
+    <div class="marker giblatar">
+        <div class="tooltip-card">
+            <div class="tooltip-content">
+                <strong>Gibraltar</strong><br>
+                Europa Point Rd
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code {
+        public static string Mensaje { get; set; }  
+
+    private ContactFormModel contactoModel = new ContactFormModel();
+
+    public class ContactFormModel
+    {
+        public string Nombre { get; set; }
+        public string Email { get; set; }
+        public string Asunto { get; set; }
+        public string Mensaje { get; set; }
+        public bool AceptaPolitica { get; set; }
+    }
+
+    private async Task EnviarInfo()
+    {
+        var response = await Http.PostAsJsonAsync("api/contacto", contactoModel);
+        if (response.IsSuccessStatusCode)
+        {
+            Mensaje = "Correo enviado correctamente";
+            contactoModel = new ContactFormModel(); // limpiar formulario
+        }
+        else
+        {
+            Mensaje = "Error al enviar: " + await response.Content.ReadAsStringAsync();
+        }
+    }
+    
+     private Dictionary<string, List<string>> contenidoContacto = new Dictionary<string, List<string>>
+    {
+    { "es", new List<string>
+        {
+            "Forma parte de este maravilloso equipo",
+            "Unete a MindShore",
+            "CUÉNTANOS TU PROYECTO",
+            "Nombre",
+            "Email",
+            "Empresa",
+            "Consulta",
+            "He leído y acepto la",
+            "Política de Privacidad.",
+            "CONSULTAR",
+            "Tu navegador no soporta la etiqueta de video.",
+            "Funcionamiento de nuestro departamento de RRHH",
+            "El nuevo departamento de Recursos Humanos funciona de manera ágil y digitalizada, permitiendo a los empleados fichar cómodamente desde su móvil, sin necesidad de dispositivos físicos adicionales. Las solicitudes y aprobaciones de vacaciones se gestionan de forma automática, ahorrando tiempo y evitando errores. Además, subir contratos o nóminas es cuestión de segundos, facilitando el acceso y la organización documental. También se integra la evaluación del desempeño y el registro de formaciones, lo que permite un seguimiento continuo del desarrollo profesional. Todo esto se centraliza en una única plataforma segura, garantizando el acceso rápido y la protección de la información de cada empleado."
+        }
+    },
+    { "en", new List<string>
+        {
+            "Be part of this wonderful team",
+            "Join MindShore",
+            "TELL US ABOUT YOUR PROJECT",
+            "Name",
+            "Email",
+            "Company",
+            "Inquiry",
+            "I have read and accept the",
+            "Privacy Policy.",
+            "SUBMIT",
+            "Your browser does not support the video tag.",
+            "Functioning of our HR department",
+            "The new Human Resources department operates in an agile and digitized manner, allowing employees to clock in comfortably from their mobile devices without the need for additional physical devices. Vacation requests and approvals are managed automatically, saving time and avoiding errors. Additionally, uploading contracts or payslips takes only seconds, facilitating access and document organization. Performance evaluations and training records are also integrated, enabling continuous tracking of professional development. All of this is centralized in a single secure platform, ensuring quick access and the protection of each employee's information."
+        }
+    },
+    { "zh", new List<string>
+        {
+            "成为这个美妙团队的一员",
+            "加入 MindShore",
+            "告诉我们您的项目",
+            "姓名",
+            "电子邮件",
+            "公司",
+            "咨询",
+            "我已阅读并接受",
+            "隐私政策。",
+            "提交",
+            "您的浏览器不支持视频标签。",
+            "我们人力资源部门的运作",
+            "新的资源部门以敏捷和数字化的方式运作，允许员工通过手机方便地打卡，无需额外的物理设备。假期申请和批准自动管理，节省时间并避免错误。此外，上传合同或工资单只需几秒钟，方便访问和文档组织。绩效评估和培训记录也被集成，能够持续跟踪职业发展。所有这些都集中在一个安全的平台中，确保快速访问和每位员工信息的保护。"
+        }
+    },
+    { "hi", new List<string>
+        {
+            "इस अद्भुत टीम का हिस्सा बनें",
+            "MindShore से जुड़ें",
+            "हमें अपने प्रोजेक्ट के बारे में बताएं",
+            "नाम",
+            "ईमेल",
+            "कंपनी",
+            "परामर्श",
+            "मैंने पढ़ा है और स्वीकार करता हूं",
+            "गोपनीयता नीति।",
+            "प्रस्तुत करें",
+            "आपका ब्राउज़र वीडियो टैग का समर्थन नहीं करता।",
+            "हमारे मानव संसाधन विभाग का संचालन",
+            "नया मानव संसाधन विभाग एक चुस्त और डिजिटलीकृत तरीके से काम करता है, जिससे कर्मचारियों को अपने मोबाइल से आराम से समय दर्ज करने की अनुमति मिलती है, अतिरिक्त भौतिक उपकरणों की आवश्यकता नहीं होती। छुट्टी के अनुरोध और अनुमोदन स्वचालित रूप से प्रबंधित किए जाते हैं, समय बचाते हैं और त्रुटियों से बचते हैं। इसके अलावा, अनुबंध या पेरोल अपलोड करना कुछ ही सेकंड का काम है, जिससे पहुंच और दस्तावेज़ संगठन में सुविधा होती है। प्रदर्शन मूल्यांकन और प्रशिक्षण रिकॉर्ड भी एकीकृत किए गए हैं, जिससे पेशेवर विकास की निरंतर ट्रैकिंग सक्षम होती है। यह सब एक सुरक्षित प्लेटफ़ॉर्म में केंद्रीकृत है, जो प्रत्येक कर्मचारी की जानकारी की त्वरित पहुंच और सुरक्षा सुनिश्चित करता है।"
+        }
+    }
+};
+
+        private string idiomaDetectado = "es"; // Idioma detectado por el navegador
+        protected override async Task OnInitializedAsync()
+        {
+            // Detectar el idioma del navegador
+            idiomaDetectado = await JSRuntime.InvokeAsync<string>("getBrowserLanguage");
+            idiomaDetectado = idiomaDetectado.Substring(0, 2); // Obtener solo el código del idioma (es, en, etc.)
+            // Si el idioma no está en el diccionario, usar español como predeterminado
+            if (!contenidoContacto.ContainsKey(idiomaDetectado))
+            {
+                idiomaDetectado = "es";
+            }
+        }
+    }

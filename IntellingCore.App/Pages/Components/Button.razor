@@ -1,0 +1,54 @@
+<button style="
+    --colorInicio1: @ColoresInicio.First();
+    --colorInicio2: @ColoresInicio.Last();
+    --colorFin1: @ColoresFin.First();
+    --colorFin2: @ColoresFin.Last();
+">
+    @Textbutton
+</button>
+
+@code {
+    #region Declaración de campos privados 
+    private List<string> _coloresFin;
+    private List<string> _coloresInicio;
+    #endregion
+    
+    [Parameter] public string Textbutton { get; set; }
+
+    [Parameter] 
+    public List<string> ColoresInicio
+    {
+        get => _coloresInicio;
+        set
+        {
+            // Si la lista es null o tiene menos de dos colores válidos, asignamos los colores predeterminados
+            if (value == null || value.Count != 2)
+            {
+                // Asignamos los colores predeterminados para los primeros dos
+                _coloresInicio = new List<string> { "#6e7a7e", "#9aa8b1" };
+            }
+            else
+            {
+                // Filtramos cualquier valor nulo o vacío y tomamos solo los primeros dos colores
+                _coloresInicio = value?.Where(c => !string.IsNullOrWhiteSpace(c)).Take(2).ToList();
+
+            }
+        }
+    }
+
+    [Parameter] public List<string> ColoresFin
+    {
+        get => _coloresFin;
+        set
+        {
+              if (value == null || value.Count != 2)
+            {
+                _coloresFin= new List<string> { "#b8ac97", "#ffbf10" };
+            }
+             else
+            {
+                _coloresFin = value?.Where(c => !string.IsNullOrWhiteSpace(c)).Take(2).ToList();
+            }
+        }
+    }
+}

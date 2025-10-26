@@ -1,0 +1,46 @@
+## .NET build
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Rider
+.idea/
+*.sln.iml
+
+## ASP.NET secrets 
+secrets.json
+
+## Logs
+*.log
+
+## VS Code settings
+.vscode/
+
+## OS-specific files
+.DS_Store
+Thumbs.db
+
+## Blazor/WebAssembly
+wwwroot/dist/
+wwwroot/node_modules/
+*.wasm.cache
+*.gz
+*.br
+
+## Temporary files
+*.tmp
+*.temp
+*.bak
+*.old
+
+## Node/npm
+node_modules/
+package-lock.json
+yarn.lock
+.pnpm-debug.log
+.env
+.env.*
+IntellingCore.App/wwwroot/Video/demo.mp4

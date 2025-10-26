@@ -1,0 +1,63 @@
+<p class="@TypeAnimation animated-text @Class" style=" --duration:  @($"{Duration}s"); --delay:  @($"{Delay}ms"); --fillmode:  @($"{FillMode}"); --timingfunction:  @($"{TimingFunction}");">@Text</p>
+
+@code{
+    /*Documentación*/
+    
+    #region Campos Privados
+    private string _typeAnimation;
+    private string _fillMode;
+    private string _timingFunction;
+
+
+    #endregion
+    [Parameter] public string Text{get;set;}
+    [Parameter] public string Class{get;set;}
+
+    [Parameter]
+    public string TypeAnimation
+    {
+        get => _typeAnimation;
+        set
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new ArgumentException("TypeAnimation no puede ser nulo ni estar en blanco. Si no desea ninguna animación, escriba 'none'.");
+            }
+            _typeAnimation = value;
+        }
+    }
+    [Parameter] public double Delay{ get;set;}
+    [Parameter] public int Duration{ get;set;}
+
+    [Parameter] 
+    public string FillMode
+    {
+        get => _fillMode;
+        set
+        {
+            List<string> allowedFillModes = ["none", "forwards", "backwards", "both" ];
+            if (!allowedFillModes.Contains(value))
+            {
+                throw new ArgumentException($"FillMode inválido: '{value}'. Valores permitidos: none, forwards, backwards, both.");
+            }
+            _fillMode = value;
+        }
+}    [Parameter]
+    public string TimingFunction
+    {
+        get => _timingFunction;
+        set
+        {
+            var allowedTimingFunctions = new[] { "ease", "ease-in", "ease-out", "ease-in-out", "linear", "step-start", "step-end" };
+
+            // Validamos timing functions normales
+            if (allowedTimingFunctions.Contains(value))
+            {
+                _timingFunction = value;
+                return;
+            }
+
+            throw new ArgumentException($"TimingFunction inválido: '{value}'. Valores permitidos: ease, ease-in, ease-out, ease-in-out, linear, step-start, step-end \n Valores no permitidos: steps(), cubic-bezier().");
+        }
+    }     
+}

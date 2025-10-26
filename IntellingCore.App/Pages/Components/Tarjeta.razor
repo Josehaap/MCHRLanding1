@@ -1,0 +1,17 @@
+<div class="Tarjeta" style="background-image: url('@($"/img/{NombreImagen}")')">   
+    <h1>@Numero</h1>
+    <div>
+        <p>@Texto</p>
+    </div>
+    
+</div>
+
+@code {
+    [Parameter]
+    public string NombreImagen { get; set; }
+
+    [Parameter]
+    public string Texto { get; set; }
+    [Parameter]
+    public string @Numero { get; set; }
+}

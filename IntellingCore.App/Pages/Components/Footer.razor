@@ -1,0 +1,130 @@
+@inject IJSRuntime JSRuntime
+
+<footer>
+        <article class="contains-newletter">
+            <section>
+                <p class="barlow-black-3D-blurEffet">@contenido[idiomaDetectado][0]</p>
+                <h2 class="bebas-neue-regular">@contenido[idiomaDetectado][1]</h2>
+                <p class="informacion">@contenido[idiomaDetectado][2]</p>
+            </section>
+            <section>
+                <div class="pseudoelemento">
+                    <form action="">
+                        <input type="email"  placeholder="@contenido[idiomaDetectado][3]"  >
+                    </form>
+                </div>
+            </section>
+        </article>
+        <article class="contains-privacity sansation-light">
+            <section>
+                @for (int i = 0; i < 5  ; i++)
+                    {
+                        if(i < 3){
+                        <NavLink href="@(enlacesLegales[i])" style="text-decoration: none;">
+                            <div>
+                                <span>@($"{contenido[idiomaDetectado][valor + 4]}")</span> 
+                            </div>
+                        </NavLink>
+                        }
+                        else {
+                                <div>
+                                    <a href="@(enlacesLegales[i])" target="_blank" style="text-decoration: none;">
+                                        <span>@contenido[idiomaDetectado][valor + 4]</span>
+                                    </a>
+                                </div>
+                            }
+                    }
+            </section>
+            <hr>
+            <section class="">
+                <p>@(contenido[idiomaDetectado][9])</p>
+                <p>
+                    <a class="" href="https://www.linkedin.com/in/jose-de-haro-jim%C3%A9nez-frontend-developer-1889b8321/"> Nuestro Linkedin</a>
+                </p>    
+            </section>
+        </article>
+    </footer>
+
+@code{
+    private string idiomaDetectado = "es"; // Idioma predeterminado
+    int valor = 0;
+    List<string> enlacesLegales = new List<string>
+    {
+        "/avisolegal","/politicaprivacidad", "/politicacookies", "/Codigo-Etico-v2-sep24-web.pdf", "/Politica_Integrada_MindShore_v4.pdf"
+    };
+    Dictionary<string, List<string>> contenido = new Dictionary<string, List<string>>()
+    {
+        {
+            "es", new List<string>
+            {
+                "NEWSLETTER",
+                "Suscríbete",
+                "Suscríbete a nuestra newsletter y entérate de todo lo que está pasando en MindShore y en el mundo",
+                "Ingresar email",
+                "Aviso legal",
+                "Política de privacidad",
+                "Política de Cookies",
+                "Código Ético",
+                "Política Integrada",
+                "© Copyright 2024 – MindShore"
+            }
+        },
+        {
+            "en", new List<string>
+            {
+                "NEWSLETTER",
+                "Subscribe",
+                "Subscribe to our newsletter and stay up to date with everything happening at MindShore and around the world",
+                "Enter email",
+                "Legal Notice",
+                "Privacy Policy",
+                "Cookie Policy",
+                "Code of Ethics",
+                "Integrated Policy",
+                "© Copyright 2024 – MindShore"
+            }
+        },
+        {
+            "zh", new List<string>
+            {
+                "通讯",
+                "订阅",
+                "订阅我们的通讯，了解MindShore及世界各地的最新动态",
+                "输入邮箱",
+                "法律声明",
+                "隐私政策",
+                "Cookie 政策",
+                "道德规范",
+                "综合政策",
+                "© 版权所有 2024 – MindShore"
+            }
+        },
+        {
+            "hi", new List<string>
+            {
+                "न्यूज़लेटर",
+                "सब्सक्राइब करें",
+                "हमारे न्यूज़लेटर की सदस्यता लें और MindShore और दुनिया भर में हो रही हर चीज़ से अवगत रहें",
+                "ईमेल दर्ज करें",
+                "कानूनी सूचना",
+                "गोपनीयता नीति",
+                "कुकी नीति",
+                "आचार संहिता",
+                "एकीकृत नीति",
+                "© कॉपीराइट 2024 – MindShore"
+            }
+        }
+    };
+     protected override async Task OnInitializedAsync()
+    {
+        // Detectar el idioma del navegador
+        idiomaDetectado = await JSRuntime.InvokeAsync<string>("getBrowserLanguage");
+        idiomaDetectado = idiomaDetectado.Substring(0, 2); // Obtener solo el código del idioma (es, en, etc.)
+
+        // Si el idioma no está en el diccionario, usar español como predeterminado
+        if (!contenido.ContainsKey(idiomaDetectado))
+        {
+            idiomaDetectado = "es";
+        }
+    }
+}

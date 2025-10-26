@@ -1,0 +1,19 @@
+@* Componente que muestra dos imágenes con efecto 3D al pasar el ratón *@
+<div class="sec">
+    <!-- Imagen de fondo -->
+    <img class="default-img" src="/img/@DefaultNameImg"  />
+    <!-- Imagen superpuesta que se muestra en hover -->
+    <img class="hover-img" src="/img/@HoverNameImg"/>
+    <h1 class="title">@Title</h1>
+</div>
+
+@code {
+    [Parameter]
+    public string DefaultNameImg { get; set; } = "";
+
+    [Parameter]
+    public string HoverNameImg { get; set; } = "";
+
+    [Parameter]
+    public string Title { get; set; } = "";
+}

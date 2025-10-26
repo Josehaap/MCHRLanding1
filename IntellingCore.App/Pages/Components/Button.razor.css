@@ -1,0 +1,23 @@
+button {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 0 0 12px 0;
+    border-radius: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, var(--colorInicio1),var(--colorInicio2)); 
+    color: white; 
+    border: none; 
+    font-size: 16px;
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+}
+
+button:hover {
+    background: linear-gradient(135deg,var(--colorFin1),var(--colorFin2)); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+}
+
+button:active {
+    transform: translateY(2px); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+}

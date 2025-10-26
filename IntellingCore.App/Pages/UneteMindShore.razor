@@ -1,0 +1,344 @@
+@page "/unete"
+@inject IJSRuntime JSRuntime
+
+<section class="hero-comunidad">
+    <ImagenSlash NombreImg="PortadaUnete2.jpg" Titulo="@contenido[idiomaDetectado][0]" TextColor="white" HayButton="false" />
+</section>
+
+<section class="join-community">
+    <div class="community-card">
+        <div class="community-text">
+            <h2>@contenido[idiomaDetectado][1]</h2>
+            <p>@contenido[idiomaDetectado][2]</p>
+            <p>@contenido[idiomaDetectado][3]</p>
+            <p>@contenido[idiomaDetectado][4]</p>
+        </div>
+        <div class="community-image">
+            <img src="/img/TeamWork3.jpg" class="imagen-comunity" alt="@contenido[idiomaDetectado][5]">
+        </div>
+    </div>
+</section>
+
+<section class="beneficios-comunidad">
+    <h2 class="titulo">@contenido[idiomaDetectado][6]</h2>
+
+    <div class="tarjeta">
+        <div class="contenido">
+            <h2>@contenido[idiomaDetectado][7]</h2>
+            <p>@contenido[idiomaDetectado][8]</p>
+        </div>
+        <div class="imagen">
+            <img src="./img/Unete1.jpg">
+        </div>
+    </div>
+
+    <div class="tarjeta">
+        <div class="contenido">
+            <h2>@contenido[idiomaDetectado][9]</h2>
+            <p>@contenido[idiomaDetectado][10]</p>
+        </div>
+        <div class="imagen">
+            <img src="./img/Unete3.jpg">
+        </div>
+    </div>
+
+    <div class="tarjeta">
+        <div class="contenido">
+            <h2>@contenido[idiomaDetectado][11]</h2>
+            <p>@contenido[idiomaDetectado][12]</p>
+        </div>
+        <div class="imagen">
+            <img src="./img/Unete2.jpg">
+        </div>
+    </div>
+
+    <div class="tarjeta">
+        <div class="contenido">
+            <h2>@contenido[idiomaDetectado][13]</h2>
+            <p>@contenido[idiomaDetectado][14]</p>
+        </div>
+        <div class="imagen">
+            <img src="./img/Unete4.jpg">
+        </div>
+    </div>
+
+    <div class="tarjeta">
+        <div class="contenido">
+            <h2>@contenido[idiomaDetectado][15]</h2>
+            <p>@contenido[idiomaDetectado][16]</p>
+        </div>
+        <div class="imagen">
+            <img src="./img/Unete5.jpg">
+        </div>
+    </div>
+
+    <div class="tarjeta">
+        <div class="contenido">
+            <h2>@contenido[idiomaDetectado][17]</h2>
+            <p>@contenido[idiomaDetectado][18]</p>
+        </div>
+        <div class="imagen">
+            <img src="./img/Unete6.jpg">
+        </div>
+    </div>
+
+    <div class="tarjeta">
+        <div class="contenido">
+            <h2>@contenido[idiomaDetectado][19]</h2>
+            <p>@contenido[idiomaDetectado][20]</p>
+        </div>
+        <div class="imagen">
+            <img src="./img/Unete7.jpg">
+        </div>
+    </div>
+</section>
+
+<section class="valores-section">
+    <h2 class="titulo">@contenido[idiomaDetectado][21]</h2>
+
+    <div class="valores-header">
+        <h2><span class="highlight">@contenido[idiomaDetectado][22]</span></h2>
+    </div>
+    <div class="valores-grid">
+        <div class="valor-card">
+            <h3>@contenido[idiomaDetectado][23]</h3>
+            <p>@contenido[idiomaDetectado][24]</p>
+            <p>@contenido[idiomaDetectado][25]</p>
+        </div>
+        <div class="valor-card">
+            <h3>@contenido[idiomaDetectado][26]</h3>
+            <p>@contenido[idiomaDetectado][27]</p>
+            <p>@contenido[idiomaDetectado][28]</p>
+        </div>
+        <div class="valor-card">
+            <h3>@contenido[idiomaDetectado][29]</h3>
+            <p>@contenido[idiomaDetectado][30]</p>
+            <p>@contenido[idiomaDetectado][31]</p>
+        </div>
+        <div class="valor-card">
+            <h3>@contenido[idiomaDetectado][32]</h3>
+            <p>@contenido[idiomaDetectado][33]</p>
+            <p>@contenido[idiomaDetectado][34]</p>
+        </div>
+        <div class="valor-card">
+            <h3>@contenido[idiomaDetectado][35]</h3>
+            <p>@contenido[idiomaDetectado][36]</p>
+            <p>@contenido[idiomaDetectado][37]</p>
+        </div>
+    </div>
+</section>
+
+<section class="mindshore-info">
+    <h2>@contenido[idiomaDetectado][38]</h2>
+    <p>@contenido[idiomaDetectado][39]<br>
+        <strong class="titulo">@contenido[idiomaDetectado][40]</strong>
+    </p>
+
+    <div class="info-buttons">
+        <a href="mailto:info@MindShore.io" class="btn email">
+            <i class="fas fa-envelope"></i> info@MindShore.io
+        </a>
+        <a href="https://www.linkedin.com/company/IntellingCore" class="btn linkedin" target="_blank">
+            <i class="fab fa-linkedin"></i> MindShore en LinkedIn
+        </a>
+    </div>
+</section>
+
+@code {
+    private string idiomaDetectado = "es"; // Idioma predeterminado
+
+    private Dictionary<string, List<string>> contenido = new Dictionary<string, List<string>>
+    {
+        { "es", new List<string>
+            {
+                "Tu centro de operaciones para gestionar personas",
+                "Gestionar RRHH implica muchos frentes:",
+                "Legales, operativos, humanos. Sin un sistema centralizado, los errores y la pérdida de tiempo son inevitables.",
+                "Además, la falta de visibilidad y trazabilidad complica la toma de decisiones, afecta la productividad y pone en riesgo el cumplimiento normativo.",
+                "Centralizar la información, automatizar procesos clave y garantizar el acceso seguro a los datos son pasos esenciales para una gestión de personas moderna, ágil y eficiente.",
+                "Persona trabajando con tecnología",
+                "Nuestra plataforma SaaS te ofrece:",
+                "Control horario legal",
+                "Fichaje desde móvil, navegador o kiosco. Cumplimiento automático con reportes por jornada, ausencias, horas extra y descansos.",
+                "Gestión documental segura",
+                "Subida de contratos, anexos y certificados. Acceso seguro para el colaborador. Firma electrónica opcional.",
+                "Vacaciones y permisos sin emails",
+                "Solicitudes con un clic, flujos de aprobación, calendarios integrados y control de ausencias.",
+                "Nóminas y comunicaciones centralizadas",
+                "Publicación masiva de nóminas, envío automático por empleado. Buzón interno para comunicados y mensajes.",
+                "Evaluaciones y desempeño",
+                "Define objetivos, realiza evaluaciones periódicas y haz seguimiento del desarrollo profesional.",
+                "Formación y planes de carrera",
+                "Registro de cursos, formaciones internas y seguimiento de cumplimiento obligatorio.",
+                "Multiempresa y roles flexibles",
+                "Cada empresa, área o centro con su configuración, permisos y datos separados.",
+                "En MindShore encontrarás",
+                "Integraciones Compatible con:",
+                "Integración con ERPs",
+                "Optimización y Conectividad Empresarial",
+                "Nuestra plataforma se integra perfectamente con sistemas ERP como SAP, Odoo y otros, permitiendo automatizar procesos, reducir errores y facilitar una visión global del negocio. Estas conexiones fortalecen la gestión y mejoran la toma de decisiones.",
+                "Compatibilidad con Sistemas Contables",
+                "Gestión Financiera Eficiente y Precisa",
+                "Ofrecemos integración con sistemas contables reconocidos, lo que permite sincronizar datos financieros en tiempo real. Esto garantiza registros precisos, mayor control y cumplimiento normativo sin duplicar esfuerzos.",
+                "Firma Electrónica",
+                "Procesos Ágiles y Legalmente Vinculantes",
+                "Nuestra solución es compatible con plataformas de firma electrónica, lo que permite validar documentos de forma segura, rápida y conforme con los estándares legales. Ideal para contratos, acuerdos y documentación sensible.",
+                "Escalabilidad y Adaptabilidad",
+                "Listos para Crecer con Tu Negocio",
+                "Nuestras integraciones están diseñadas para escalar con tus necesidades. Ya sea que trabajes con soluciones locales o en la nube, la plataforma se adapta a tu infraestructura tecnológica actual y futura.",
+                "Seguridad en las Integraciones",
+                "Confianza y Protección de Datos",
+                "Cada integración se implementa siguiendo protocolos de seguridad robustos para garantizar la confidencialidad, integridad y disponibilidad de los datos empresariales. Nos aseguramos de cumplir con estándares internacionales como ISO y GDPR.",
+                "¿Quieres saber qué está pasando en MindShore?",
+                "Para saber más sobre nuestros proyectos y actualizaciones,",
+                "síguenos en LinkedIn"
+            }
+        },
+        { "en", new List<string>
+            {
+                "Your operations center for managing people",
+                "Managing HR involves many fronts:",
+                "Legal, operational, human. Without a centralized system, errors and wasted time are inevitable.",
+                "Furthermore, the lack of visibility and traceability complicates decision-making, affects productivity, and jeopardizes regulatory compliance.",
+                "Centralizing information, automating key processes, and ensuring secure data access are essential steps for modern, agile, and efficient people management.",
+                "Person working with technology",
+                "Our SaaS platform offers you:",
+                "Legal time control",
+                "Clock-in via mobile, browser, or kiosk. Automatic compliance with reports by shift, absences, overtime, and breaks.",
+                "Secure document management",
+                "Upload contracts, annexes, and certificates. Secure access for the collaborator. Optional electronic signature.",
+                "Vacations and leave without emails",
+                "One-click requests, approval workflows, integrated calendars, and absence control.",
+                "Centralized payroll and communications",
+                "Mass publication of payrolls, automatic sending per employee. Internal mailbox for announcements and messages.",
+                "Evaluations and performance",
+                "Define objectives, conduct periodic evaluations, and track professional development.",
+                "Training and career plans",
+                "Record courses, internal training, and monitor mandatory compliance.",
+                "Multi-company and flexible roles",
+                "Each company, area, or center with its configuration, permissions, and separate data.",
+                "At MindShore you will find",
+                "Integrations Compatible with:",
+                "ERP Integration",
+                "Business Optimization and Connectivity",
+                "Our platform integrates seamlessly with ERP systems like SAP, Odoo, and others, allowing process automation, error reduction, and facilitating a global business view. These connections strengthen management and improve decision-making.",
+                "Compatibility with Accounting Systems",
+                "Efficient and Accurate Financial Management",
+                "We offer integration with recognized accounting systems, enabling real-time financial data synchronization. This ensures accurate records, greater control, and regulatory compliance without duplicating efforts.",
+                "Electronic Signature",
+                "Agile and Legally Binding Processes",
+                "Our solution is compatible with electronic signature platforms, allowing secure, fast, and legally compliant document validation. Ideal for contracts, agreements, and sensitive documentation.",
+                "Scalability and Adaptability",
+                "Ready to Grow with Your Business",
+                "Our integrations are designed to scale with your needs. Whether you work with local or cloud solutions, the platform adapts to your current and future technological infrastructure.",
+                "Security in Integrations",
+                "Trust and Data Protection",
+                "Each integration is implemented following robust security protocols to ensure the confidentiality, integrity, and availability of business data. We ensure compliance with international standards like ISO and GDPR.",
+                "Want to know what's happening at MindShore?",
+                "To learn more about our projects and updates,",
+                "follow us on LinkedIn"
+            }
+        },
+        { "zh", new List<string>
+            {
+                "您的人力资源管理操作中心",
+                "管理人力资源涉及多个方面：",
+                "法律、运营、人事。没有集中系统，错误和时间浪费是不可避免的。",
+                "此外，缺乏可见性和可追溯性会使决策复杂化，影响生产力，并危及合规性。",
+                "集中信息、自动化关键流程并确保数据安全访问是实现现代、敏捷和高效人力资源管理的关键步骤。",
+                "使用技术工作的人员",
+                "我们的SaaS平台为您提供：",
+                "合法的时间控制",
+                "通过移动设备、浏览器或自助终端打卡。自动生成班次、缺勤、加班和休息报告，确保合规。",
+                "安全的文档管理",
+                "上传合同、附件和证书。员工可安全访问。可选电子签名。",
+                "无需电子邮件的休假和请假管理",
+                "一键申请，审批流程，集成日历和缺勤控制。",
+                "集中化的薪资和通信管理",
+                "批量发布薪资，自动按员工发送。内部邮箱用于公告和消息。",
+                "评估和绩效管理",
+                "设定目标，定期评估，并跟踪职业发展。",
+                "培训和职业规划",
+                "记录课程、内部培训，并监控强制性合规情况。",
+                "多公司和灵活角色管理",
+                "每个公司、部门或中心都有其配置、权限和独立数据。",
+                "在MindShore，您将找到",
+                "兼容的集成：",
+                "与ERP系统集成",
+                "业务优化和连接性",
+                "我们的平台可与SAP、Odoo等ERP系统无缝集成，实现流程自动化、减少错误，并提供全局业务视图。这些连接加强了管理并改善了决策。",
+                "与会计系统的兼容性",
+                "高效准确的财务管理",
+                "我们提供与知名会计系统的集成，实现财务数据的实时同步。确保记录准确、控制增强，并符合合规要求，无需重复工作。",
+                "电子签名",
+                "高效且具有法律效力的流程",
+                "我们的解决方案兼容电子签名平台，允许安全、快速且符合法律标准的文件验证。适用于合同、协议和敏感文档。",
+                "可扩展性和适应性",
+                "准备与您的业务共同成长",
+                "我们的集成设计可根据您的需求扩展。无论您使用本地还是云解决方案，平台都能适应您当前和未来的技术基础设施。",
+                "集成的安全性",
+                "信任与数据保护",
+                "每个集成都遵循强大的安全协议，确保业务数据的机密性、完整性和可用性。我们确保遵守ISO和GDPR等国际标准。",
+                "想了解MindShore的最新动态？",
+                "了解我们的项目和更新，",
+                "关注我们的LinkedIn"
+            }
+        },
+        { "hi", new List<string>
+            {
+                "लोगों के प्रबंधन के लिए आपका संचालन केंद्र",
+                "मानव संसाधन प्रबंधन कई पहलुओं में शामिल होता है:",
+                "कानूनी, परिचालन, मानवीय। एक केंद्रीकृत प्रणाली के बिना, त्रुटियाँ और समय की बर्बादी अपरिहार्य हैं।",
+                "साथ ही, दृश्यता और ट्रेसबिलिटी की कमी निर्णय लेने को कठिन बनाती है, उत्पादकता को प्रभावित करती है और नियामक अनुपालन को जोखिम में डालती है।",
+                "जानकारी का केंद्रीकरण, प्रमुख प्रक्रियाओं का स्वचालन और डेटा तक सुरक्षित पहुंच सुनिश्चित करना आधुनिक, चुस्त और कुशल मानव प्रबंधन के लिए आवश्यक कदम हैं।",
+                "प्रौद्योगिकी के साथ काम करता व्यक्ति",
+                "हमारा SaaS प्लेटफ़ॉर्म आपको प्रदान करता है:",
+                "कानूनी समय नियंत्रण",
+                "मोबाइल, ब्राउज़र या कियोस्क से टाइम इन/आउट। कार्यदिवस, अनुपस्थिति, अतिरिक्त घंटे और ब्रेक की रिपोर्ट के साथ स्वचालित अनुपालन।",
+                "सुरक्षित दस्तावेज़ प्रबंधन",
+                "अनुबंध, परिशिष्ट और प्रमाणपत्र अपलोड करें। कर्मचारी के लिए सुरक्षित पहुंच। वैकल्पिक इलेक्ट्रॉनिक हस्ताक्षर।",
+                "ईमेल के बिना अवकाश और अनुमति",
+                "एक-क्लिक अनुरोध, अनुमोदन प्रवाह, एकीकृत कैलेंडर और अनुपस्थिति नियंत्रण।",
+                "वेतन और संचार का केंद्रीकरण",
+                "वेतन का सामूहिक प्रकाशन, प्रत्येक कर्मचारी को स्वचालित रूप से भेजना। घोषणाओं और संदेशों के लिए आंतरिक मेलबॉक्स।",
+                "मूल्यांकन और प्रदर्शन",
+                "लक्ष्य परिभाषित करें, नियमित मूल्यांकन करें और व्यावसायिक विकास पर नज़र रखें।",
+                "प्रशिक्षण और करियर योजनाएँ",
+                "पाठ्यक्रमों का पंजीकरण, आंतरिक प्रशिक्षण और अनिवार्य अनुपालन का पालन।",
+                "मल्टीकंपनी और लचीली भूमिकाएं",
+                "हर कंपनी, क्षेत्र या केंद्र के लिए अलग कॉन्फ़िगरेशन, अनुमतियाँ और डेटा।",
+                "MindShore में आपको मिलेगा",
+                "संगत एकीकरण:",
+                "ERP के साथ एकीकरण",
+                "व्यापारिक अनुकूलन और कनेक्टिविटी",
+                "हमारा प्लेटफ़ॉर्म SAP, Odoo और अन्य जैसे ERP सिस्टम के साथ आसानी से एकीकृत हो जाता है, जिससे प्रक्रियाओं का स्वचालन, त्रुटियों में कमी और व्यापार की समग्र दृष्टि संभव होती है। ये कनेक्शन प्रबंधन को मजबूत करते हैं और निर्णय लेने में सुधार करते हैं।",
+                "लेखांकन प्रणालियों के साथ संगतता",
+                "कुशल और सटीक वित्तीय प्रबंधन",
+                "हम मान्यता प्राप्त लेखा प्रणालियों के साथ एकीकरण प्रदान करते हैं, जो वित्तीय डेटा को रीयल-टाइम में सिंक्रनाइज़ करने की अनुमति देता है। यह सटीक रिकॉर्ड, बेहतर नियंत्रण और दोहराव के बिना अनुपालन सुनिश्चित करता है।",
+                "इलेक्ट्रॉनिक हस्ताक्षर",
+                "तेज़ और कानूनी रूप से बाध्यकारी प्रक्रियाएँ",
+                "हमारा समाधान इलेक्ट्रॉनिक हस्ताक्षर प्लेटफॉर्म के साथ संगत है, जो दस्तावेज़ों को सुरक्षित, तेज़ और कानूनी मानकों के अनुसार मान्य करने की अनुमति देता है। अनुबंधों, समझौतों और संवेदनशील दस्तावेजों के लिए आदर्श।",
+                "स्केलेबिलिटी और अनुकूलनशीलता",
+                "आपके व्यवसाय के साथ बढ़ने के लिए तैयार",
+                "हमारे एकीकरण आपकी आवश्यकताओं के अनुसार स्केल करने के लिए डिज़ाइन किए गए हैं। चाहे आप स्थानीय समाधान का उपयोग करें या क्लाउड में हों, प्लेटफ़ॉर्म आपकी वर्तमान और भविष्य की तकनीकी अवसंरचना के अनुसार खुद को ढाल लेता है।",
+                "एकीकरण में सुरक्षा",
+                "भरोसा और डेटा सुरक्षा",
+                "प्रत्येक एकीकरण को मजबूत सुरक्षा प्रोटोकॉल का पालन करते हुए लागू किया जाता है ताकि व्यावसायिक डेटा की गोपनीयता, अखंडता और उपलब्धता सुनिश्चित की जा सके। हम ISO और GDPR जैसे अंतरराष्ट्रीय मानकों का पालन सुनिश्चित करते हैं।",
+                "जानना चाहते हैं कि MindShore में क्या हो रहा है?",
+                "हमारे प्रोजेक्ट्स और अपडेट्स के बारे में जानने के लिए,",
+                "हमें LinkedIn पर फॉलो करें"
+            }
+        }
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        idiomaDetectado = await JSRuntime.InvokeAsync<string>("getBrowserLanguage");
+        idiomaDetectado = idiomaDetectado.Substring(0, 2);
+
+        if (!contenido.ContainsKey(idiomaDetectado))
+        {
+            idiomaDetectado = "es";
+        }
+    }
+}

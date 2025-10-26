@@ -1,0 +1,61 @@
+@inherits LayoutComponentBase
+@inject IJSRuntime JSRuntime
+
+<header>
+        <nav>
+                <NavLink class="link" href="/" Match="NavLinkMatch.All" style="text-decoration: none;">
+                        <div>
+                                <span aria-hidden="true">@contenido[idiomaDetectado][0]</span>
+
+                        </div>
+                </NavLink>
+                <NavLink class="link" href="/nosotros" Match="NavLinkMatch.All" style="text-decoration: none;">
+                        <div>
+                                <span aria-hidden="true">@contenido[idiomaDetectado][1]</span>
+
+                        </div>
+                </NavLink>
+                <NavLink class="link" href="/servicios" Match="NavLinkMatch.All" style="text-decoration: none;">
+                        <div>
+                                <span aria-hidden="true">@contenido[idiomaDetectado][2]</span>
+                        </div>
+                </NavLink>
+                <NavLink class="link" href="/unete" Match="NavLinkMatch.All" style="text-decoration: none;">
+                        <div>
+                                <span aria-hidden="true">@contenido[idiomaDetectado][3]</span>
+                        </div>
+                </NavLink>
+                <NavLink class="link" href="/contacto" Match="NavLinkMatch.All" style="text-decoration: none;">
+                        <div>
+                                <span aria-hidden="true">@contenido[idiomaDetectado][4]</span>
+
+                        </div>
+                </NavLink>
+        </nav>
+</header>
+<article class="Contendor_Body">
+            @Body
+</article>
+<Footer/>
+@code {
+        Dictionary<string, List<string>> contenido = new Dictionary<string, List<string>>()
+        {
+                { "es", new List<string> { "Home", "Nosotros", "Servicios", "Mindshore", "Contacto" } },
+                { "en", new List<string> { "Home", "About Us", "Services", "Mindshore", "Contact" } },
+                { "zh", new List<string> { "首页", "关于我们", "服务", "Mindshore", "联系方式" } },
+                { "hi", new List<string> { "होम", "हमारे बारे में", "सेवाएँ", "Mindshore", "संपर्क" } }
+        };
+        private string idiomaDetectado = "es"; // Idioma predeterminado
+        protected override async Task OnInitializedAsync()
+        {
+                // Detectar el idioma del navegador
+                idiomaDetectado = await JSRuntime.InvokeAsync<string>("getBrowserLanguage");
+                idiomaDetectado = idiomaDetectado.Substring(0, 2); // Obtener solo el código del idioma (es, en, etc.)
+
+                // Si el idioma no está en el diccionario, usar español como predeterminado
+                if (!contenido.ContainsKey(idiomaDetectado))
+                {
+                idiomaDetectado = "es";
+                }
+        }
+}

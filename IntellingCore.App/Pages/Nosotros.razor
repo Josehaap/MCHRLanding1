@@ -1,0 +1,345 @@
+@page "/nosotros"
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+
+<ImagenSlash HayButton="false" NombreImg="reunionPersonas.jpg" Titulo='@($"{contenidoNosotros[idiomaDetectado][0]}")' Subtitulo="@($"{contenidoNosotros[idiomaDetectado][1]}")" />
+
+<div class="options-container">
+    <div class="options-container">
+        @for (int i = 1; i < 4; i++)
+        {
+            var index = i; // Captura el valor de i en una variable local
+            <div class="clickable-div @(selected == $"content{index}" ? "clickable-div-Active" : "")"
+                @onclick='() => ShowOnly($"content{index}")'>
+                <b>@($"{contenidoNosotros[idiomaDetectado][index + 1]}")</b>
+            </div>
+        }
+    </div>
+</div
+
+@if (selected == "content1")
+{
+        <div class="content-div responsive-flex">
+        <div class="text-content">
+            <h3>@($"{contenidoNosotros[idiomaDetectado][5]}")</h3>
+            @for (int i = 6; i < 9; i++)
+            {
+                <p>@($"{contenidoNosotros[idiomaDetectado][i]}")</p>
+                <br />
+            }
+        </div>
+        <div class="image-content hide-on-mobile">
+            <img src="/img/CalleLarios.jpg" alt="Imagen relacionada" class="img-ajustada" />
+        </div>
+    </div>
+}
+else if (selected == "content2")
+{
+        <div class="content-div">
+            <table style="width: 100%;text-align: center;">
+                <tr>
+                    @for (int i = 0; i < 3; i++)
+                    {
+                        <td style="width: 30%;">
+                            <img src='@($"{listadoImagenes[i]}")' alt="Imagen relacionada" class="img-circular" />
+                            <h3>@($"{contenidoNosotros[idiomaDetectado][9 + (i*2)]}")</h3>
+                            <p>@($"{contenidoNosotros[idiomaDetectado][10 + (i * 2)]}")</p>
+                        </td>
+                    }
+                </tr>
+            </table>
+        </div>
+}
+else if (selected == "content3")
+{
+        <div class="content-div">
+            <table style="width: 100%;">
+                <tr>
+                    <td style="width: 50%; padding-left: 10%; padding-right: 10%; ">
+                        <img src="/img/NosotrosFotoFormulario.jpg" alt="Imagen relacionada"
+                            style="max-width: 100%; border-radius: 8px;" />
+                    </td>
+                    <td style="wind: 45%;">
+                        <div>
+                            <h3 style="text-align: center;">@($"{contenidoNosotros[idiomaDetectado][15]}")</h3><br>
+                            <ol>
+                                @for (int i = 16; i < 22; i++)
+                                {
+                                    if (i == 18)
+                                    {
+                                        <ul>
+                                            @for(; i < 20; i++)
+                                            {
+                                                <li>@($"{contenidoNosotros[idiomaDetectado][i]}")</li>
+                                            }
+                                           </ul>
+                                    }
+                                    
+                                    <li>@($"{contenidoNosotros[idiomaDetectado][i]}")</li>
+                                }
+                            </ol>
+                        </div>
+                        
+                        <div style="text-align: center;">
+                            <button class="boton" id="botonContacto" @onclick='()=> NavigationManager.NavigateTo("/contacto")'>@($"{contenidoNosotros[idiomaDetectado][22]}")</button>
+                        </div>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+}
+
+<section>
+    @for (int i = 0; i < 3; i++)
+    {
+    <article>
+        <img src='@($"{listadoImagenes[i + 3]}")' alt="Imagen relacionada" />  
+        <div>
+           <h3>@($"{contenidoNosotros[idiomaDetectado][ 2 * i + 23]}")</h3>
+            <p>@($"{contenidoNosotros[idiomaDetectado][2 * i + 24]}")</p>
+        </div>
+        
+    </article>
+    }   
+</section>
+
+
+    <!-- Mapa -->
+<div class="map-container">
+    <img src="/img/mapa-removebg-preview.png" alt="Mapa" class="map-image">
+
+    <div class="marker madrid">
+        <div class="tooltip-card">
+            <div class="tooltip-content">
+                <strong>Madrid</strong><br>
+                C. de los Estudios
+            </div>
+        </div>
+    </div>
+
+    <div class="marker malaga">
+        <div class="tooltip-card">
+            <div class="tooltip-content">
+                <strong>Málaga</strong><br>
+                Carretera Cádiz n°89
+            </div>
+        </div>
+    </div>
+
+    <div class="marker larioja">
+        <div class="tooltip-card">
+            <div class="tooltip-content">
+                <strong>La Rioja</strong><br>
+                Av. de la Tecnología 12
+            </div>
+        </div>
+    </div>
+
+    <div class="marker giblatar">
+        <div class="tooltip-card">
+            <div class="tooltip-content">
+                <strong>Gibraltar</strong><br>
+                Europa Point Rd
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@code {
+    private string selected =  "content1";
+
+    private void ShowOnly(string id)
+    {
+        selected = id;
+    }
+
+
+   List<string> listadoImagenes = ["/img/David.jpg", "/img/jose.jpg", "/img/mario.jpg","/img/nosotrosit.jpg", "/img/compañeros.jpg", "/img/nostros1.jpg"];
+
+        private Dictionary<string, List<string>> contenidoNosotros = new Dictionary<string, List<string>>
+    {
+        { "es", new List<string>
+            {
+                "MindShore",
+                "Expertos comprometidos para proyectos IT de éxito",
+                "Nuestro origen",
+                "Fundadores",
+                "Cómo unirte a nosotros",
+                "El principio de todo",
+                "MindShore nació de la amistad y pasión compartida por la tecnología de tres compañeros de clase. Durante su último año de universidad, desarrollaron una solución digital para un taller mecánico como parte de un proyecto académico. El éxito fue tal que el cliente les pagó y los recomendó a otros.",
+                "Motivados por esa experiencia, decidieron fundar una consultora tecnológica centrada en ayudar a pequeñas y medianas empresas a digitalizar sus procesos. Así surgió MindShore, una fusión de MindShore, consultoría y tecnología en su esencia.",
+                "Comenzaron con pocos recursos, trabajando desde bibliotecas y cafeterías, pero su enfoque cercano y soluciones personalizadas los hizo destacar. En menos de un año ya tenían clientes estables y un equipo en crecimiento.",
+                "David",
+                "Desarrollador de software con estudios en economía",
+                "Jose",
+                "Desarrollador de software con estudios en marketing",
+                "Mario",
+                "Desarrollador de software con estudios en contabilidad",
+                "Pasos a seguir",
+                "Métete en nuestra página de contacto",
+                "Elige si quieres unirte mediante el formulario o por LinkedIn",
+                "Si seleccionas el formulario, sigue leyendo",
+                "Si seleccionas LinkedIn, sigue las instrucciones de esa plataforma",
+                "Rellena el formulario",
+                "Puedes ir a la página de contacto desde el menú superior o desde el botón inferior",
+                "Ir a contacto",
+                "Apoyando a los gerentes de TI en todo el mundo",
+                "Reclutamos, seleccionamos y contratamos profesionales de TI con amplia experiencia y un alto nivel de especialización, cuidadosamente evaluados para adaptarse a las necesidades específicas de tu organización. Estos expertos se integran de manera fluida a tu equipo, aportando valor desde el primer día y contribuyendo activamente al éxito de tus proyectos tecnológicos.",
+                "Más cercanos, relaciones más duraderas",
+                "En MindShore trabajamos con la convicción de que las conexiones humanas son el motor de la innovación. Nos dedicamos a identificar y vincular el mejor talento con proyectos transformadores, construyendo puentes sólidos entre empresas visionarias y profesionales apasionados. Lo hacemos a través de soluciones de talento innovadoras, accesibles, eficientes y diseñadas para simplificar los procesos, generando relaciones laborales duraderas y de alto impacto.",
+                "El futuro trabaja mejor con nosotros",
+                "Hemos construido una red única y altamente especializada de talento TI sin fronteras, compuesta por profesionales calificados en diversas áreas tecnológicas. Esta red nos permite ofrecer soluciones flexibles de outsourcing, trabajo remoto y servicios nearshore, adaptadas a las necesidades cambiantes de cada organización. Todo esto dentro de un marco de colaboración cercana y relaciones a largo plazo, basadas en la confianza, la calidad y el compromiso con el éxito de nuestros clientes.",
+                "Madrid",
+                "C. de los Estudios",
+                "Málaga",
+                "Carretera Cádiz n°89",
+                "La Rioja",
+                "Av. de la Tecnología 12",
+                "Gibraltar",
+                "Europa Point Rd"
+            }
+        },
+        { "en", new List<string>
+            {
+                "MindShore",
+                "Committed experts for successful IT projects",
+                "Our origin",
+                "Founders",
+                "How to join us",
+                "The beginning of everything",
+                "MindShore was born from the friendship and shared passion for technology of three classmates. During their final year of university, they developed a digital solution for a mechanical workshop as part of an academic project. The success was such that the client paid them and recommended them to others.",
+                "Motivated by that experience, they decided to found a technology consultancy focused on helping small and medium-sized businesses digitize their processes. Thus, MindShore emerged, a fusion of MindShore, consulting, and technology at its core.",
+                "They started with few resources, working from libraries and cafes, but their close approach and personalized solutions made them stand out. In less than a year, they already had stable clients and a growing team.",
+                "David",
+                "Software developer with studies in economics",
+                "Jose",
+                "Software developer with studies in marketing",
+                "Mario",
+                "Software developer with studies in accounting",
+                "Steps to follow",
+                "Go to our contact page",
+                "Choose whether to join via the form or LinkedIn",
+                "If you select the form, keep reading",
+                "If you select LinkedIn, follow the instructions on that platform",
+                "Fill out the form",
+                "You can go to the contact page from the top menu or the bottom button",
+                "Go to contact",
+                "Supporting IT managers worldwide",
+                "We recruit, select, and hire IT professionals with extensive experience and a high level of specialization, carefully evaluated to fit the specific needs of your organization. These experts integrate seamlessly into your team, adding value from day one and actively contributing to the success of your technology projects.",
+                "Closer, longer-lasting relationships",
+                "At MindShore, we work with the conviction that human connections are the engine of innovation. We are dedicated to identifying and linking the best talent with transformative projects, building strong bridges between visionary companies and passionate professionals. We do this through innovative, accessible, and efficient talent solutions designed to simplify processes, generating long-lasting and high-impact work relationships.",
+                "The future works better with us",
+                "We have built a unique and highly specialized borderless IT talent network, composed of qualified professionals in various technological areas. This network allows us to offer flexible outsourcing, remote work, and nearshore services, adapted to the changing needs of each organization. All this within a framework of close collaboration and long-term relationships, based on trust, quality, and commitment to the success of our clients.",
+                "Madrid",
+                "C. de los Estudios",
+                "Málaga",
+                "Carretera Cádiz n°89",
+                "La Rioja",
+                "Av. de la Tecnología 12",
+                "Gibraltar",
+                "Europa Point Rd"
+            }
+        },
+        { "zh", new List<string>
+            {
+                "MindShore",
+                "致力于成功 IT 项目的专家",
+                "我们的起源",
+                "创始人",
+                "如何加入我们",
+                "一切的开始",
+                "MindShore 诞生于三位同学之间的友谊和对技术的共同热情。在他们大学的最后一年，他们为一家机械车间开发了一个数字解决方案，作为学术项目的一部分。成功如此之大，以至于客户付钱给他们并将他们推荐给其他人。",
+                "受到这种经历的激励，他们决定成立一家技术咨询公司，专注于帮助中小型企业数字化其流程。于是，MindShore 诞生了，它是智能、咨询和技术的融合。",
+                "他们从很少的资源开始，从图书馆和咖啡馆工作，但他们的亲密方法和个性化解决方案使他们脱颖而出。在不到一年的时间里，他们已经拥有稳定的客户和不断增长的团队。",
+                "David",
+                "具有经济学研究背景的软件开发人员",
+                "Jose",
+                "具有市场营销研究背景的软件开发人员",
+                "Mario",
+                "具有会计研究背景的软件开发人员",
+                "遵循的步骤",
+                "访问我们的联系页面",
+                "选择通过表单或 LinkedIn 加入",
+                "如果选择表单，请继续阅读",
+                "如果选择 LinkedIn，请按照该平台上的说明进行操作",
+                "填写表单",
+                "您可以从顶部菜单或底部按钮进入联系页面",
+                "转到联系",
+                "支持全球 IT 经理",
+                "我们招聘、选择和雇用具有丰富经验和高水平专业化的 IT 专业人员，经过仔细评估以适应您组织的具体需求。这些专家无缝融入您的团队，从第一天起就增加价值，并积极为您的技术项目的成功做出贡献。",
+                "更亲密、更持久的关系",
+                "在 MindShore，我们坚信人际关系是创新的引擎。我们致力于将最优秀的人才与变革性项目联系起来，在有远见的公司和充满激情的专业人士之间建立牢固的桥梁。我们通过创新、可访问和高效的人才解决方案来实现这一目标，这些解决方案旨在简化流程，产生持久且高影响力的工作关系。",
+                "未来与我们一起更好地工作",
+                "我们建立了一个独特且高度专业化的无国界 IT 人才网络，由各技术领域的合格专业人士组成。该网络使我们能够提供灵活的外包、远程工作和近岸服务，适应每个组织不断变化的需求。所有这些都在紧密合作和长期关系的框架内，基于信任、质量和对客户成功的承诺。",
+                "马德里",
+                "C. de los Estudios",
+                "马拉加",
+                "Carretera Cádiz n°89",
+                "拉里奥哈",
+                "Av. de la Tecnología 12",
+                "直布罗陀",
+                "Europa Point Rd"
+            }
+        },
+        { "hi", new List<string>
+            {
+                "MindShore",
+                "सफल आईटी परियोजनाओं के लिए प्रतिबद्ध विशेषज्ञ",
+                "हमारी उत्पत्ति",
+                "संस्थापक",
+                "हमसे जुड़ने का तरीका",
+                "सब कुछ की शुरुआत",
+                "MindShore तीन सहपाठियों की दोस्ती और प्रौद्योगिकी के लिए साझा जुनून से पैदा हुआ था। विश्वविद्यालय के अपने अंतिम वर्ष के दौरान, उन्होंने एक शैक्षणिक परियोजना के हिस्से के रूप में एक यांत्रिक कार्यशाला के लिए एक डिजिटल समाधान विकसित किया। सफलता इतनी बड़ी थी कि ग्राहक ने उन्हें भुगतान किया और उन्हें दूसरों को सिफारिश की।",
+                "उस अनुभव से प्रेरित होकर, उन्होंने एक प्रौद्योगिकी परामर्श कंपनी की स्थापना करने का निर्णय लिया, जो छोटे और मध्यम आकार के व्यवसायों को उनके प्रक्रियाओं को डिजिटाइज़ करने में मदद करने पर केंद्रित थी। इस प्रकार, MindShore उभरा, जो अपनी मूल में बुद्धिमत्ता, परामर्श और प्रौद्योगिकी का एक संलयन है।",
+                "उन्होंने कम संसाधनों के साथ शुरुआत की, पुस्तकालयों और कैफे से काम किया, लेकिन उनके निकट दृष्टिकोण और व्यक्तिगत समाधान ने उन्हें अलग बना दिया। एक साल से भी कम समय में, उनके पास स्थिर ग्राहक और एक बढ़ती हुई टीम थी।",
+                "David",
+                "अर्थशास्त्र में अध्ययन के साथ सॉफ़्टवेयर डेवलपर",
+                "Jose",
+                "मार्केटिंग में अध्ययन के साथ सॉफ़्टवेयर डेवलपर",
+                "Mario",
+                "लेखांकन में अध्ययन के साथ सॉफ़्टवेयर डेवलपर",
+                "अनुसरण करने के चरण",
+                "हमारे संपर्क पृष्ठ पर जाएं",
+                "निर्धारित करें कि क्या आप फॉर्म या लिंक्डइन के माध्यम से जुड़ना चाहते हैं",
+                "यदि आप फॉर्म चुनते हैं, तो पढ़ना जारी रखें",
+                "यदि आप लिंक्डइन चुनते हैं, तो उस प्लेटफ़ॉर्म पर दिए गए निर्देशों का पालन करें",
+                "फॉर्म भरें",
+                "आप शीर्ष मेनू या नीचे दिए गए बटन से संपर्क पृष्ठ पर जा सकते हैं",
+                "संपर्क पर जाएं",
+                "दुनिया भर में आईटी प्रबंधकों का समर्थन करना",
+                "हम व्यापक अनुभव और उच्च स्तर की विशेषज्ञता वाले आईटी पेशेवरों की भर्ती, चयन और नियुक्ति करते हैं, जिन्हें आपकी संगठन की विशिष्ट आवश्यकताओं के लिए सावधानीपूर्वक मूल्यांकन किया गया है। ये विशेषज्ञ आपके टीम में सहजता से एकीकृत होते हैं, पहले दिन से ही मूल्य जोड़ते हैं और आपके तकनीकी परियोजनाओं की सफलता में सक्रिय रूप से योगदान करते हैं।",
+                "करीबी, लंबे समय तक चलने वाले संबंध",
+                "MindShore में, हम इस विश्वास के साथ काम करते हैं कि मानव कनेक्शन नवाचार का इंजन हैं। हम सबसे अच्छे प्रतिभा को परिवर्तनकारी परियोजनाओं से जोड़ने के लिए समर्पित हैं, दूरदर्शी कंपनियों और भावुक पेशेवरों के बीच मजबूत पुलों का निर्माण करते हैं। हम इसे नवाचारी, सुलभ और कुशल प्रतिभा समाधान के माध्यम से करते हैं, जो प्रक्रियाओं को सरल बनाने के लिए डिज़ाइन किए गए हैं, लंबे समय तक चलने वाले और उच्च प्रभाव वाले कार्य संबंध उत्पन्न करते हैं।",
+                "भविष्य हमारे साथ बेहतर काम करता है",
+                "हमने एक अद्वितीय और अत्यधिक विशेषज्ञता वाले सीमा रहित आईटी प्रतिभा नेटवर्क का निर्माण किया है, जो विभिन्न तकनीकी क्षेत्रों में योग्य पेशेवरों से बना है। यह नेटवर्क हमें लचीले आउटसोर्सिंग, रिमोट वर्क और नियरशोर सेवाएं प्रदान करने की अनुमति देता है, जो प्रत्येक संगठन की बदलती आवश्यकताओं के लिए अनुकूलित हैं। यह सब निकट सहयोग और दीर्घकालिक संबंधों के ढांचे के भीतर, विश्वास, गुणवत्ता और हमारे ग्राहकों की सफलता के प्रति प्रतिबद्धता पर आधारित है।",
+                "मैड्रिड",
+                "C. de los Estudios",
+                "मलागा",
+                "Carretera Cádiz n°89",
+                "ला रियोजा",
+                "Av. de la Tecnología 12",
+                "जिब्राल्टर",
+                "Europa Point Rd"
+            }
+        }
+    };
+    private string idiomaDetectado = "es"; // Idioma detectado por el navegador
+    protected override async Task OnInitializedAsync()
+    {
+        // Detectar el idioma del navegador
+        idiomaDetectado = await JSRuntime.InvokeAsync<string>("getBrowserLanguage");
+        idiomaDetectado = idiomaDetectado.Substring(0, 2); // Obtener solo el código del idioma (es, en, etc.)
+
+        // Si el idioma no está en el diccionario, usar español como predeterminado
+        if (!contenidoNosotros.ContainsKey(idiomaDetectado))
+        {
+            idiomaDetectado = "es";
+        }
+    }
+    
+}   

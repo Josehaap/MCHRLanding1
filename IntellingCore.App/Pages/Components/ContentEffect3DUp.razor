@@ -1,0 +1,34 @@
+@* AnimacionCentrada *@
+
+<article class="container">
+    @foreach (var img in Imagenes)
+    {
+        <div class="tarjeta">
+            <div class="v"></div>
+            <img src="@img" alt="Imagen" />
+        </div>
+    }
+</article>
+
+@code {
+    // Ruta de imágenes en wwwroot/Imagenes
+    [Parameter] public List<string> NamesFiles { get; set; }
+    public List<string> Imagenes = new();
+
+    protected override void OnInitialized()
+    {
+        FormarRuta();
+    }
+
+    private void FormarRuta()
+    {
+        foreach (string name in NamesFiles)
+        {
+            // Asegúrate de que la ruta en el servidor esté dentro de wwwroot
+            string rutaWeb = $"/img/{name}"; // Esta es la ruta web accesible desde el navegador
+
+            // Agregar la ruta completa a la lista de imágenes
+            Imagenes.Add(rutaWeb);
+        }
+    }
+}

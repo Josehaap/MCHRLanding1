@@ -1,0 +1,20 @@
+@using IntellingCore.App.Pages.Components
+
+ <article class="llamada-atencion" style=" --textColor:  @TextColor; background: url(/img/@NombreImg) bottom / cover fixed;">
+      <h2>@Titulo</h2>
+      <p>@Subtitulo</p>
+      @if(HayButton)
+      {
+            <Button Textbutton='@(TextButton??= "Suscribete")' ColoresInicio='["#6e7a7e","#9aa8b1"]' ColoresFin='["#b8ac97","#ffbf10"]'  />
+      }
+    </article>
+
+@code{
+    [Parameter] public string Titulo{get;set;}
+    [Parameter] public string Subtitulo{get;set;}
+    [Parameter] public string TextColor{get;set;}
+    [Parameter] public string TextButton{get;set;}
+    [Parameter] public bool HayButton{get;set;} = true;
+    [Parameter] public string NombreImg{get;set;}
+   
+}

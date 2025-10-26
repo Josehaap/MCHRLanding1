@@ -1,0 +1,290 @@
+@page "/servicios"
+@inject NavigationManager Navigation
+@inject IJSRuntime JSRuntime
+
+<body>
+    <section class="que-hacemos">
+        <div class="titulo-hacemos">
+            <h2>@($"{contenidoNosotros[idiomaDetectado][0]}")</h2>
+            <h3><strong>@($"{contenidoNosotros[idiomaDetectado][1]}")</strong></h3>
+            <div class="linea"></div>
+        </div>
+
+        <article class="contenedor-cubos">
+            @for(int i = 0; i < 3; i++)
+            {
+                <div class="tarjeta-cubo">
+                    <div class="cubo"></div>
+                    <img src='@($"{rutasImg[i]}")' alt="Imagen @i" />
+                </div>
+            }
+        </article>
+    </section>
+
+    <!-- Sección de Servicios -->
+    <section class="servicios-section">
+        <h1 class="titulo">@($"{contenidoNosotros[idiomaDetectado][2]}")</h1>
+
+        @for (int i = 0; i < 2; i++)
+        {
+            <div class="tarjeta">
+                <div class="imagen">
+                    <img src='@($"{rutasImg[i + 3]}")' alt="Imagen @i" />
+                </div>
+                <div class="contenido">
+                    <h2>@contenidoNosotros[idiomaDetectado][i * 6 + 3]</h2>
+                    <p>@contenidoNosotros[idiomaDetectado][i * 6 + 4]</p>
+                    <ul>
+                        @switch(i)
+                        {
+                            case 0:
+                                @for (int j = 0; j < 4; j++)
+                                {
+                                    <li>@($"{contenidoNosotros[idiomaDetectado][i * 4 + 5 + j]}")</li>
+                                }
+                                break;
+                            case 1:
+                                @for (int j = 11; j < 14; j++)
+                                {
+                                    <li>@($"{contenidoNosotros[idiomaDetectado][j]}")</li>
+                                }
+                                break;
+                        }
+                        
+                    </ul>
+                </div>
+            </div>
+        }
+        <div class="tarjeta">
+            <div class="imagen">
+                <img src="./img/SoftwareQA3.jpg" alt="Software QA">
+            </div>
+            <div class="contenido">
+                <h2>@contenidoNosotros[idiomaDetectado][14]</h2>
+                <p>@contenidoNosotros[idiomaDetectado][15]</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Métodos de Colaboración -->
+    <section class="colaboracion-section">
+        <h1 class="titulo">@contenidoNosotros[idiomaDetectado][16]</h1>
+        <p class="subtitulo">@contenidoNosotros[idiomaDetectado][17]</p>
+
+        <div class="colaboracion-grid">
+            <div class="colaboracion-card">
+                <div class="colaboracion-texto">
+                    <h2>@contenidoNosotros[idiomaDetectado][18]</h2>
+                    <p>@contenidoNosotros[idiomaDetectado][19]</p>
+                </div>
+                <div class="colaboracion-imagen">
+                    <img src="./img/TeamWork2.jpg" alt="Outsourcing">
+                </div>
+            </div>
+
+            <div class="colaboracion-card">
+                <div class="colaboracion-imagen">
+                    <img src="./img/TeamWork1.jpg" alt="Proyectos">
+                </div>
+                <div class="colaboracion-texto">
+                    <h2>@contenidoNosotros[idiomaDetectado][20]</h2>
+                    <p>@contenidoNosotros[idiomaDetectado][21]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="porque-mindshore">
+        <h1 class="titulo">@contenidoNosotros[idiomaDetectado][22]</h1>
+        <div class="porque-cards">
+            @for (int i = 0; i < 4; i++)
+            {
+                <div class='porque-card @(i==0 ? "border-highlight" : i==3 ? "highlight" : "")'>
+                    <span class="porque-number">@($"{i + 1}")</span>
+                    <h2>@contenidoNosotros[idiomaDetectado][i * 2 + 23]</h2>
+                    <p>@contenidoNosotros[idiomaDetectado][i * 2 + 24]</p>
+                    @if (i == 3)
+                    {
+                        <button class="btn" @onclick="NavigateToContact">@contenidoNosotros[idiomaDetectado][31]</button>
+                    }
+                </div>
+            }
+        </div>
+    </section>
+
+</body>
+
+
+@code {
+    private void NavigateToContact()
+    {
+        Navigation.NavigateTo("/contacto");
+    }
+
+    List<string> rutasImg =["./img/Engranaje.jpg", "./img/SistemasERP.jpg", "./img/SoftwareQA2.jpg", "./img/Ingenieria.jpg", "./img/SistemasCRM.jpg", "./img/SoftwareQA3.jpg", "./img/TeamWork2.jpg", "./img/TeamWork1.jpg"];
+    private Dictionary<string, List<string>> contenidoNosotros = new Dictionary<string, List<string>>
+{
+    { "es", new List<string>
+        {
+            // Sección "Qué Hacemos"
+            "QUÉ HACEMOS",
+            "Nuestros servicios y experiencia",
+            // Sección "Nuestros Servicios"
+            "Nuestros Servicios",
+            "INGENIERÍA DE SOFTWARE",
+            "Desarrollamos soluciones adaptadas a tus necesidades, flexibles y escalables. El conocimiento de las tecnologías más punteras y el talento de nuestros profesionales nos permite ofrecer la mejor calidad en el desarrollo de software y garantizar el éxito de nuestros clientes.",
+            "Proyectos de desarrollo de software",
+            "Diseño y puesta en marcha de módulos back y front end",
+            "Integraciones y migraciones de software",
+            "Soluciones móviles",
+            "SISTEMAS ERP Y CRM",
+            "Cuenta con MindShore para cualquier tarea relacionada con tu sistema empresarial o para el ciclo completo: consultoría, implementación, personalización, soporte y mantenimiento, actualizaciones, integraciones y migraciones de sistemas de gestión empresarial y de gestión comercial y de clientes.",
+            "SAP",
+            "MS Dynamics",
+            "Salesforce",
+            "SOFTWARE QA",
+            "Para MindShore la calidad es clave. Nuestro equipo de expertos en QA Automation garantiza que tu aplicación brille con un rendimiento impecable, funcionalidad sin fallos y una excelente experiencia de usuario.",
+            // Sección "Métodos de Colaboración"
+            "Métodos de colaboración",
+            "Contrata a MindShore a través de estas dos fórmulas",
+            "Outsourcing",
+            "Nuestros profesionales colaborarán con tu equipo para asegurar el cumplimiento de los proyectos y que tengas las competencias necesarias para lograr el éxito. Cuenta con MindShore en su modalidad outsourcing cuando necesites talento profesional altamente capacitado, ya sea individual o en squads de alto rendimiento.",
+            "Proyectos",
+            "Si quieres contar con la plena capacidad de MindShore, encárganos tu proyecto y déjanos el resto. Un Project Manager identificará tus requerimientos y asegurará el cumplimiento del plan y expectativas.",
+            // Sección "¿Por qué MindShore?"
+            "¿Por qué MindShore?",
+            "Te Hacemos la Vida Más Fácil",
+            "Proporcionando soluciones adecuadas y talento eficiente para unirse a tu equipo y proyectos, adaptando las mejores metodologías para alcanzar los objetivos requeridos.",
+            "Con Recursos Expertos y Adecuados",
+            "Porque gestionamos talento sólo para el sector IT, puedes sentirte seguro de que entendemos tus problemas, limitaciones y necesidades. Y de que somos capaces de hacerlo muy rápido.",
+            "Comprometidos y Fiables Hasta el Final",
+            "En MindShore estamos tan comprometidos por las necesidades de nuestros equipos como por las tuyas. Nos esforzamos al máximo para garantizar el bienestar, el trato respetuoso y el buen desarrollo de las partes.",
+            "¿Dónde va a ser tu próximo gran avance?",
+            "Si tienes un proyecto en mente, una necesidad crítica o urgente, o simplemente quieres explorar posibles soluciones, estaremos encantados de escucharte.",
+            "Consultar"
+        }
+    },
+    { "en", new List<string>
+        {
+            "WHAT WE DO",
+            "Our services and experience",
+            "Our Services",
+            "SOFTWARE ENGINEERING",
+            "We develop solutions tailored to your needs, flexible and scalable. The knowledge of cutting-edge technologies and the talent of our professionals allow us to offer the best quality in software development and guarantee the success of our clients.",
+            "Software development projects",
+            "Design and implementation of back-end and front-end modules",
+            "Software integrations and migrations",
+            "Mobile solutions",
+            "ERP AND CRM SYSTEMS",
+            "Count on MindShore for any task related to your enterprise system or for the full cycle: consulting, implementation, customization, support and maintenance, updates, integrations, and migrations of enterprise and customer management systems.",
+            "SAP",
+            "MS Dynamics",
+            "Salesforce",
+            "SOFTWARE QA",
+            "For MindShore, quality is key. Our team of QA Automation experts ensures that your application shines with impeccable performance, flawless functionality, and an excellent user experience.",
+            "Collaboration Methods",
+            "Hire MindShore through these two formulas",
+            "Outsourcing",
+            "Our professionals will collaborate with your team to ensure project compliance and that you have the necessary skills to achieve success. Count on MindShore in its outsourcing mode when you need highly skilled professional talent, either individually or in high-performance squads.",
+            "Projects",
+            "If you want to have the full capacity of MindShore, entrust us with your project and leave the rest to us. A Project Manager will identify your requirements and ensure compliance with the plan and expectations.",
+            "Why MindShore?",
+            "We Make Your Life Easier",
+            "Providing suitable solutions and efficient talent to join your team and projects, adapting the best methodologies to achieve the required objectives.",
+            "With Expert and Suitable Resources",
+            "Because we manage talent only for the IT sector, you can feel confident that we understand your problems, limitations, and needs. And that we can do it very quickly.",
+            "Committed and Reliable Until the End",
+            "At MindShore, we are as committed to the needs of our teams as we are to yours. We strive to ensure the well-being, respectful treatment, and good development of all parties.",
+            "Where will your next big breakthrough be?",
+            "If you have a project in mind, a critical or urgent need, or simply want to explore possible solutions, we will be happy to hear from you.",
+            "Consult"
+        }
+    },
+    { "zh", new List<string>
+        {
+            "我们做什么",
+            "我们的服务和经验",
+            "我们的服务",
+            "软件工程",
+            "我们开发满足您需求的解决方案，灵活且可扩展。对尖端技术的了解和我们专业人员的才能使我们能够提供最佳的软件开发质量，并保证客户的成功。",
+            "软件开发项目",
+            "后端和前端模块的设计和实施",
+            "软件集成和迁移",
+            "移动解决方案",
+            "ERP 和 CRM 系统",
+            "依靠 MindShore 完成与您的企业系统相关的任何任务或整个周期：咨询、实施、定制、支持和维护、更新、集成以及企业和客户管理系统的迁移。",
+            "SAP",
+            "MS Dynamics",
+            "Salesforce",
+            "软件质量保证",
+            "对于 MindShore，质量是关键。我们的 QA 自动化专家团队确保您的应用程序具有无可挑剔的性能、无故障的功能和出色的用户体验。",
+            "合作方式",
+            "通过以下两种方式与 MindShore 合作",
+            "外包",
+            "我们的专业人员将与您的团队合作，以确保项目合规性，并确保您拥有实现成功所需的技能。当您需要高技能的专业人才时，无论是个人还是高绩效团队，都可以依靠 MindShore 的外包模式。",
+            "项目",
+            "如果您想充分利用 MindShore 的能力，请将您的项目委托给我们，其余的交给我们。一位项目经理将识别您的需求并确保计划和期望的合规性。",
+            "为什么选择 MindShore？",
+            "我们让您的生活更轻松",
+            "提供合适的解决方案和高效的人才加入您的团队和项目，采用最佳方法来实现所需目标。",
+            "拥有专家和合适的资源",
+            "因为我们只为 IT 行业管理人才，您可以放心，我们了解您的问题、限制和需求。而且我们可以非常快速地完成。",
+            "直到最后都可靠",
+            "在 MindShore，我们对团队的需求和您的需求同样承诺。我们努力确保各方的福祉、尊重的待遇和良好的发展。",
+            "您的下一个重大突破在哪里？",
+            "如果您有一个项目在脑海中，一个关键或紧急的需求，或者只是想探索可能的解决方案，我们很乐意听取您的意见。",
+            "咨询"
+        }
+    },
+    { "hi", new List<string>
+        {
+            "हम क्या करते हैं",
+            "हमारी सेवाएं और अनुभव",
+            "हमारी सेवाएं",
+            "सॉफ़्टवेयर इंजीनियरिंग",
+            "हम आपकी आवश्यकताओं के अनुसार समाधान विकसित करते हैं, जो लचीले और स्केलेबल होते हैं। अत्याधुनिक तकनीकों का ज्ञान और हमारे पेशेवरों की प्रतिभा हमें सॉफ़्टवेयर विकास में सर्वोत्तम गुणवत्ता प्रदान करने और हमारे ग्राहकों की सफलता की गारंटी देने में सक्षम बनाती है।",
+            "सॉफ़्टवेयर विकास परियोजनाएं",
+            "बैक-एंड और फ्रंट-एंड मॉड्यूल का डिज़ाइन और कार्यान्वयन",
+            "सॉफ़्टवेयर एकीकरण और माइग्रेशन",
+            "मोबाइल समाधान",
+            "ईआरपी और सीआरएम सिस्टम",
+            "अपने एंटरप्राइज़ सिस्टम से संबंधित किसी भी कार्य के लिए या पूरे चक्र के लिए MindShore पर भरोसा करें: परामर्श, कार्यान्वयन, अनुकूलन, समर्थन और रखरखाव, अपडेट, एकीकरण और एंटरप्राइज़ और ग्राहक प्रबंधन प्रणालियों का माइग्रेशन।",
+            "एसएपी",
+            "एमएस डायनेमिक्स",
+            "सेल्सफोर्स",
+            "सॉफ़्टवेयर गुणवत्ता आश्वासन",
+            "MindShore के लिए, गुणवत्ता महत्वपूर्ण है। हमारे QA ऑटोमेशन विशेषज्ञों की टीम यह सुनिश्चित करती है कि आपका एप्लिकेशन त्रुटिहीन प्रदर्शन, दोषरहित कार्यक्षमता और एक उत्कृष्ट उपयोगकर्ता अनुभव के साथ चमके।",
+            "सहयोग के तरीके",
+            "इन दो सूत्रों के माध्यम से MindShore को किराए पर लें",
+            "आउटसोर्सिंग",
+            "हमारे पेशेवर आपकी टीम के साथ सहयोग करेंगे ताकि यह सुनिश्चित किया जा सके कि परियोजनाएं अनुपालन में हैं और आपके पास सफलता प्राप्त करने के लिए आवश्यक कौशल हैं। जब आपको उच्च कुशल पेशेवर प्रतिभा की आवश्यकता हो, चाहे व्यक्तिगत रूप से या उच्च प्रदर्शन वाले दस्तों में, MindShore के आउटसोर्सिंग मोड पर भरोसा करें।",
+            "परियोजनाएं",
+            "यदि आप MindShore की पूर्ण क्षमता का लाभ उठाना चाहते हैं, तो हमें अपना प्रोजेक्ट सौंपें और बाकी हमें छोड़ दें। एक प्रोजेक्ट मैनेजर आपकी आवश्यकताओं की पहचान करेगा और योजना और अपेक्षाओं के अनुपालन को सुनिश्चित करेगा।",
+            "क्यों MindShore?",
+            "हम आपका जीवन आसान बनाते हैं",
+            "उपयुक्त समाधान और कुशल प्रतिभा प्रदान करना जो आपकी टीम और परियोजनाओं में शामिल हो, आवश्यक उद्देश्यों को प्राप्त करने के लिए सर्वोत्तम कार्यप्रणालियों को अपनाना।",
+            "विशेषज्ञ और उपयुक्त संसाधनों के साथ",
+            "क्योंकि हम केवल आईटी क्षेत्र के लिए प्रतिभा का प्रबंधन करते हैं, आप आश्वस्त महसूस कर सकते हैं कि हम आपकी समस्याओं, सीमाओं और आवश्यकताओं को समझते हैं। और हम इसे बहुत जल्दी कर सकते हैं।",
+            "अंत तक प्रतिबद्ध और विश्वसनीय",
+            "MindShore में, हम अपनी टीमों की जरूरतों के लिए उतने ही प्रतिबद्ध हैं जितने कि आपकी। हम सभी पक्षों की भलाई, सम्मानजनक व्यवहार और अच्छे विकास को सुनिश्चित करने के लिए प्रयास करते हैं।",
+            "आपकी अगली बड़ी सफलता कहाँ होगी?",
+            "यदि आपके पास कोई परियोजना है, एक महत्वपूर्ण या तत्काल आवश्यकता है, या बस संभावित समाधानों का पता लगाना चाहते हैं, तो हम आपकी बात सुनने में प्रसन्न होंगे।",
+            "परामर्श करें"
+        }
+    }
+};
+
+    private string idiomaDetectado = "es"; // Idioma detectado por el navegador
+    protected override async Task OnInitializedAsync()
+    {
+        // Detectar el idioma del navegador
+        idiomaDetectado = await JSRuntime.InvokeAsync<string>("getBrowserLanguage");
+        idiomaDetectado = idiomaDetectado.Substring(0, 2); // Obtener solo el código del idioma (es, en, etc.)
+
+        // Si el idioma no está en el diccionario, usar español como predeterminado
+        if (!contenidoNosotros.ContainsKey(idiomaDetectado))
+        {
+            idiomaDetectado = "es";
+        }
+    }
+}

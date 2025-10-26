@@ -1,0 +1,206 @@
+{
+  "es": {
+    "hero": {
+      "title": "¿Listo para llevar tu proyecto al siguiente nivel?",
+      "subtitle": "Optimiza procesos, aumenta tu productividad y crece con nosotros.",
+      "buttonText": "Solicita tu consulta gratuita"
+    },
+    "cards": [
+      {
+        "title": "Talento global, crecimiento global",
+        "description": "Conexión total"
+      },
+      {
+        "title": "Contratos seguros",
+        "description": "70% de consultorías 100% de ÉXITO"
+      },
+      {
+        "title": "Expertos en desarrollos IT",
+        "description": "Te acompañamos en cada paso del camino, asegurando el éxito a largo plazo."
+      }
+    ],
+    "about": {
+      "title": "¿Por qué elegirnos?",
+      "description": "Somos líderes en consultoría de negocios con más de 10 años de experiencia ayudando a empresas a mejorar sus procesos y resultados.",
+      "features": [
+        {
+          "title": "Expertos en el sector",
+          "description": "Contamos con un equipo especializado en diversas industrias, brindando soluciones personalizadas."
+        },
+        {
+          "title": "Soluciones eficientes",
+          "description": "Nos enfocamos en entregar soluciones prácticas y de impacto inmediato para tu empresa."
+        },
+        {
+          "title": "Soporte continuo",
+          "description": "Te acompañamos en cada paso del camino, asegurando el éxito a largo plazo."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "¿Por qué elegirnos?",
+      "comments": [
+        {
+          "name": "Juan Pérez, CEO de Empresa X",
+          "comment": "Gracias a la consultoría de IntellingCore, logramos aumentar nuestras ventas un 40% en solo 6 meses. ¡Recomiendo completamente sus servicios!"
+        },
+        {
+          "name": "María González, Directora de Marketing en InnoTech",
+          "comment": "IntellingCore nos ayudó a definir una estrategia clara y efectiva. Ahora nuestros clientes están más satisfechos que nunca."
+        },
+        {
+          "name": "Carlos Ramírez, Fundador de Soluciones Creativas",
+          "comment": "Pasamos de tener procesos desorganizados a un sistema optimizado que nos ahorra horas de trabajo cada semana."
+        },
+        {
+          "name": "Laura Méndez, Gerente Comercial en DeltaCorp",
+          "comment": "Nunca imaginé que podríamos mejorar tanto con tan pocos ajustes. La asesoría de IntellingCore fue clave para nuestro crecimiento."
+        },
+        {
+          "name": "Andrés Torres, CTO de VisionSoft",
+          "comment": "Con su enfoque personalizado, IntellingCore logró adaptarse completamente a nuestras necesidades técnicas."
+        },
+        {
+          "name": "Patricia Luna, Consultora Independiente",
+          "comment": "Antes de trabajar con IntellingCore, estábamos estancados. Hoy, estamos expandiéndonos a nivel internacional."
+        }
+      ]
+    }
+  },
+  "en": {
+    "hero": {
+      "title": "Ready to take your project to the next level?",
+      "subtitle": "Optimize processes, increase your productivity, and grow with us.",
+      "buttonText": "Request your free consultation"
+    },
+    "cards": [
+      {
+        "title": "Global talent, global growth",
+        "description": "Total connection"
+      },
+      {
+        "title": "Secure contracts",
+        "description": "70% of consultancies 100% SUCCESS"
+      },
+      {
+        "title": "Experts in IT development",
+        "description": "We accompany you every step of the way, ensuring long-term success."
+      }
+    ],
+    "about": {
+      "title": "Why choose us?",
+      "description": "We are leaders in business consulting with over 10 years of experience helping companies improve their processes and results.",
+      "features": [
+        {
+          "title": "Industry experts",
+          "description": "We have a specialized team in various industries, providing personalized solutions."
+        },
+        {
+          "title": "Efficient solutions",
+          "description": "We focus on delivering practical and immediate impact solutions for your company."
+        },
+        {
+          "title": "Continuous support",
+          "description": "We accompany you every step of the way, ensuring long-term success."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Why choose us?",
+      "comments": [
+        {
+          "name": "John Perez, CEO of Company X",
+          "comment": "Thanks to IntellingCore's consulting, we managed to increase our sales by 40% in just 6 months. I highly recommend their services!"
+        },
+        {
+          "name": "Mary Johnson, Marketing Director at InnoTech",
+          "comment": "IntellingCore helped us define a clear and effective strategy. Now, our customers are more satisfied than ever."
+        },
+        {
+          "name": "Carlos Ramirez, Founder of Creative Solutions",
+          "comment": "We went from having disorganized processes to an optimized system that saves us hours of work every week."
+        },
+        {
+          "name": "Laura Mendez, Sales Manager at DeltaCorp",
+          "comment": "I never imagined we could improve so much with so few adjustments. IntellingCore's consultancy was key to our growth."
+        },
+        {
+          "name": "Andrew Torres, CTO of VisionSoft",
+          "comment": "With their personalized approach, IntellingCore completely adapted to our technical needs."
+        },
+        {
+          "name": "Patricia Luna, Independent Consultant",
+          "comment": "Before working with IntellingCore, we were stuck. Today, we are expanding internationally."
+        }
+      ]
+    }
+  },
+  "fr": {
+    "hero": {
+      "title": "Prêt à porter votre projet au niveau supérieur ?",
+      "subtitle": "Optimisez les processus, augmentez votre productivité et développez-vous avec nous.",
+      "buttonText": "Demandez votre consultation gratuite"
+    },
+    "cards": [
+      {
+        "title": "Talent mondial, croissance mondiale",
+        "description": "Connexion totale"
+      },
+      {
+        "title": "Contrats sécurisés",
+        "description": "70% de consultations 100% RÉUSSITE"
+      },
+      {
+        "title": "Experts en développement IT",
+        "description": "Nous vous accompagnons à chaque étape, en assurant un succès à long terme."
+      }
+    ],
+    "about": {
+      "title": "Pourquoi nous choisir ?",
+      "description": "Nous sommes leaders en conseil aux entreprises avec plus de 10 ans d'expérience aidant les entreprises à améliorer leurs processus et leurs résultats.",
+      "features": [
+        {
+          "title": "Experts du secteur",
+          "description": "Nous avons une équipe spécialisée dans divers secteurs, offrant des solutions personnalisées."
+        },
+        {
+          "title": "Solutions efficaces",
+          "description": "Nous nous concentrons sur la fourniture de solutions pratiques et à impact immédiat pour votre entreprise."
+        },
+        {
+          "title": "Support continu",
+          "description": "Nous vous accompagnons à chaque étape, en assurant un succès à long terme."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Pourquoi nous choisir ?",
+      "comments": [
+        {
+          "name": "Jean Perez, PDG de Entreprise X",
+          "comment": "Grâce aux conseils d'IntellingCore, nous avons réussi à augmenter nos ventes de 40% en seulement 6 mois. Je recommande vivement leurs services !"
+        },
+        {
+          "name": "Marie Dubois, Directrice Marketing chez InnoTech",
+          "comment": "IntellingCore nous a aidés à définir une stratégie claire et efficace. Maintenant, nos clients sont plus satisfaits que jamais."
+        },
+        {
+          "name": "Carlos Ramirez, Fondateur de Solutions Créatives",
+          "comment": "Nous sommes passés de processus désorganisés à un système optimisé qui nous fait gagner des heures de travail chaque semaine."
+        },
+        {
+          "name": "Laura Mendez, Responsable Commerciale chez DeltaCorp",
+          "comment": "Je n'aurais jamais imaginé que nous pourrions autant nous améliorer avec si peu d'ajustements. Le conseil d'IntellingCore a été essentiel pour notre croissance."
+        },
+        {
+          "name": "André Torres, CTO de VisionSoft",
+          "comment": "Avec leur approche personnalisée, IntellingCore s'est complètement adapté à nos besoins techniques."
+        },
+        {
+          "name": "Patricia Luna, Consultante Indépendante",
+          "comment": "Avant de travailler avec IntellingCore, nous étions bloqués. Aujourd'hui, nous nous développons à l'international."
+        }
+      ]
+    }
+  }
+}
