@@ -1,26 +1,27 @@
 # Etapa 1: Build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /app
+WORKDIR /src
 
-# Copiar los archivos de la solución y restaurar dependencias
-COPY ./MCHRLanding.sln ./
-COPY ./IntellingCore.App/*.csproj ./IntellingCore.App/
-RUN dotnet restore ./IntellingCore.App/IntellingCore.App.csproj
+# Copiamos los csproj y restauramos
+COPY IntellingCore.API/*.csproj IntellingCore.API/
+COPY IntellingCore.App/*.csproj IntellingCore.App/
+RUN dotnet restore IntellingCore.API/IntellingCore.API.csproj
 
-# Copiar el resto del código fuente y compilar
-COPY ./IntellingCore.App ./IntellingCore.App/
-WORKDIR /app/IntellingCore.App
-RUN dotnet publish -c Release -o /out
+# Copiamos todo el código
+COPY . .
+
+# Publicamos la API (que incluye el frontend Blazor)
+RUN dotnet publish IntellingCore.API/IntellingCore.API.csproj -c Release -o /app/publish
 
 # Etapa 2: Runtime
-FROM nginx:alpine AS runtime
-WORKDIR /usr/share/nginx/html
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+WORKDIR /app
+COPY --from=build /app/publish .
 
-# Copiar los archivos publicados desde la etapa de build
-COPY --from=build /out/wwwroot .
+# Exponer el puerto que Render asigna
+ENV ASPNETCORE_URLS=http://+:$PORT
+EXPOSE $PORT
 
-# Copiar el archivo de configuración personalizado de Nginx
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Iniciar la API
+ENTRYPOINT ["dotnet", "IntellingCore.API.dll"]
 
-# Exponer el puerto en el que corre la aplicación
-EXPOSE 8010
