@@ -2,11 +2,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -18,26 +18,34 @@ builder.Services.AddCors(options =>
                       });
 });
 
-// Añade controladores
+// Controladores
 builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Swagger solo en desarrollo
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-//RFG456YUH credenciales correo 
+
+// HTTPS redirection
 app.UseHttpsRedirection();
 
-// Usa la política de CORS que definiste
+// CORS
 app.UseCors(MyAllowSpecificOrigins);
 
+// Archivos estáticos de Blazor
+app.UseStaticFiles();
+
+// Authorization
 app.UseAuthorization();
+
+// Mapear controladores de la API
 app.MapControllers();
 
+// Endpoint de ejemplo
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -57,6 +65,9 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast")
 .WithOpenApi();
+
+// Fallback SPA: cualquier ruta que no sea API sirve index.html de Blazor
+app.MapFallbackToFile("index.html");
 
 app.Run();
 
