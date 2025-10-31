@@ -1,27 +1,28 @@
 # Etapa 1: Build
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 
-# Copiamos los csproj y restauramos
-COPY IntellingCore.API/*.csproj IntellingCore.API/
-COPY IntellingCore.App/*.csproj IntellingCore.App/
-RUN dotnet restore IntellingCore.API/IntellingCore.API.csproj
+# Copia solo los archivos de solución y proyectos
+COPY *.sln ./
+COPY Concesionario/Concesionario.csproj Concesionario/
+COPY LibsClass/LibsClass.csproj LibsClass/
 
-# Copiamos todo el código
+# Restaura dependencias (usa la solución directamente)
+RUN dotnet restore
+
+# Copia todo el código
 COPY . .
 
-# Publicamos la API (que incluye el frontend Blazor)
-RUN dotnet publish IntellingCore.API/IntellingCore.API.csproj -c Release -o /app/publish
+# Publica el proyecto principal (carpeta donde está Program.cs)
+RUN dotnet publish Concesionario/Concesionario.csproj -c Release -o /app/publish
 
 # Etapa 2: Runtime
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 
-# Exponer el puerto que Render asigna
-ENV ASPNETCORE_URLS=http://+:$PORT
-EXPOSE $PORT
+# Render expone dinámicamente el puerto en $PORT
+ENV ASPNETCORE_URLS=http://+:${PORT}
+EXPOSE 10000
 
-# Iniciar la API
-ENTRYPOINT ["dotnet", "IntellingCore.API.dll"]
-
+ENTRYPOINT ["dotnet", "Concesionario.dll"]
